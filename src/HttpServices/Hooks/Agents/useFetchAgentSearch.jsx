@@ -1,9 +1,17 @@
+import { realtorKey } from "Utils/utils";
 import axios from "axios";
 import { useEffect } from "react";
 import { useMemo } from "react";
 import { useState } from "react";
 
-const useFetchAgentSearch = ({ stateCode, city }) => {
+const useFetchAgentSearch = ({
+  stateCode,
+  city,
+  sortby,
+  priceMax,
+  priceMin,
+  agentName,
+}) => {
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -14,16 +22,23 @@ const useFetchAgentSearch = ({ stateCode, city }) => {
       params: {
         state_code: stateCode,
         city,
+        sort: sortby,
+        limit: 80,
+        price_min: priceMin,
+        price_max: priceMax,
+        agent_name: agentName,
       },
       headers: {
         "content-type": "application/octet-stream",
-        "X-RapidAPI-Key": "4739bd97cbmsh4d6ed5faf3af021p1a0003jsn23f53f704b62",
+        "X-RapidAPI-Key": realtorKey,
         "X-RapidAPI-Host": "us-real-estate.p.rapidapi.com",
       },
     }),
-    [city, stateCode]
+    [agentName, city, priceMax, priceMin, sortby, stateCode]
   );
   useEffect(() => {
+    setError(null);
+    setIsLoading(true);
     axios
       .request(options)
       .then((data) => {

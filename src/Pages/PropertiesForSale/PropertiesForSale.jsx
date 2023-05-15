@@ -47,7 +47,6 @@ const PropertiesForSale = () => {
     lotSizeMin: apiParams.minHomeLotSize,
     lotSizeMax: apiParams.maxHomeLotSize,
   });
-  
   return (
     <Page>
       <PageInnerContainer>

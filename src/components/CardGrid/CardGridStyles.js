@@ -5,6 +5,7 @@ export const container = styled.div`
   align-items: flex-start;
   justify-content: start;
   width: 100%;
+  margin: 10px 0;
 `;
 export const grid = styled.div`
   display: flex;

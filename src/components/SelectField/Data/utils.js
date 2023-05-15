@@ -16,6 +16,28 @@ export const sortByForRentalproperties = [
     value: "highest_price",
   },
 ];
+export const sortByForSoldProperties = [
+  {
+    name:"Sold Date",
+    value: "sold_date"
+  },
+  {
+    name: "Lowest Price",
+    value: "lowest_price",
+  },
+  {
+    name: "Highest Price",
+    value: "highest_price",
+  },
+  {
+    name:"Lot Size",
+    value: "lot_size"
+  },
+  {
+    name:"Number Of Beds",
+    value: "number_of_beds"
+  },
+]
 export const sortByForAgents = [
   {
     name: "Agent Rating High",

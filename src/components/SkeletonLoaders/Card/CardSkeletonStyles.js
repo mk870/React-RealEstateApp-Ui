@@ -58,3 +58,52 @@ export const textLoader = styled.div`
     height: 15px;
   }
 `;
+export const textLoader2 = styled.div`
+  animation: ${skeletonAnimation} 1s linear infinite alternate;
+  width: 70%;
+  height: 15px;
+  border-radius: 5px;
+  @media (max-width: 700px) {
+    height: 15px;
+  }
+`;
+export const agentContainer = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 3px;
+  box-sizing: border-box;
+`
+export const agentPoster = styled.div`
+  animation: ${skeletonAnimation} 1s linear infinite alternate;
+  width: 130px;
+  height: 130px;
+  border-radius: 100%;
+  @media (max-width: 420px) {
+    width: 110px;
+    height: 110px;
+  }
+  @media (max-width: 370px) {
+    width: 90px;
+    height: 90px;
+  }
+`;
+export const agentTextLoader = styled.div`
+  animation: ${skeletonAnimation} 1s linear infinite alternate;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  @media (max-width: 700px) {
+    height: 15px;
+  }
+`;
+export const agentTextLoader2 = styled.div`
+  animation: ${skeletonAnimation} 1s linear infinite alternate;
+  width: 70%;
+  height: 15px;
+  border-radius: 5px;
+  @media (max-width: 700px) {
+    height: 15px;
+  }
+`;

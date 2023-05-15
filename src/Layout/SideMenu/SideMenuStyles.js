@@ -28,6 +28,7 @@ export const container = styled.div`
   bottom: 0;
   top: 0;
   position: fixed;
+  z-index: 100;
   background-color: ${whiteColor};
 `;
 

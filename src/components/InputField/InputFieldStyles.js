@@ -16,6 +16,11 @@ export const InputContainer = styled.div`
     position: absolute;
     right: 10px;
   }
+  .astricks{
+    position: absolute;
+    left: 101%;
+    top: 0;
+  }
 `;
 
 export const Input = styled.input`

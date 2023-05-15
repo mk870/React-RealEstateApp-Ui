@@ -1,4 +1,5 @@
 import { mainThemeColor } from "Css/Variables";
+import { opacityAnimation } from "components/PropertyDetails/TaxHistory/TaxHistoryStyles";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -12,6 +13,16 @@ export const Container = styled.div`
   @media (max-width: 350px) {
     padding: 5px;
   }
+`;
+export const openFilters = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: start;
+  box-sizing: border-box;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+  margin-bottom: 15px;
 `;
 export const filterController = styled.div`
   display: flex;
@@ -51,8 +62,12 @@ export const toggleText = styled.p`
   font-weight: bold;
   cursor: pointer;
   text-decoration: underline;
+  @media (max-width: 600px) {
+    font-size: 12px;
+  }
 `;
 export const filtersWrapper = styled.div`
+  animation: ${opacityAnimation} 0.5s;
   display: flex;
   align-items: flex-start;
   justify-content: start;
@@ -61,6 +76,7 @@ export const filtersWrapper = styled.div`
   flex-wrap: wrap;
   width: 100%;
   gap: 15px;
+  margin-top: 10px;
 `;
 export const filterGroups = styled.div`
   display: flex;

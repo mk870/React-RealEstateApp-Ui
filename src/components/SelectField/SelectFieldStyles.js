@@ -3,12 +3,18 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
+  position: relative;
   align-items: ${(props) =>
     props.selectSize === "large" ? "flex-start" : "center"};
   justify-content: start;
   flex-direction: ${(props) =>
     props.selectSize === "large" ? "column" : "row"};
   box-sizing: border-box;
+  .astricks{
+    position: absolute;
+    left: 101%;
+    top: 25px;
+  }
 `;
 
 export const label = styled.div`

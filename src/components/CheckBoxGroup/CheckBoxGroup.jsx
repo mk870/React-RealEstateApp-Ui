@@ -284,7 +284,21 @@ const CheckBoxGroup = ({
   }, [resetCheckboxes, setResetCheckboxes]);
   return (
     <styled.Container>
-      {(type === "properties for sale" || type === "properties sold") && (
+      {type === "properties sold" && <styled.checkBoxContainer>
+            <styled.header>Property Types</styled.header>
+            <styled.group>
+              {forSalePropertyTypesList.map((propertyType, index) => (
+                <CheckBox
+                  key={propertyType.name}
+                  checkHandler={() => handleForSalePropertyTypes(index)}
+                  isChecked={propertyType.checked}
+                  index={index}
+                  label={propertyType.name}
+                />
+              ))}
+            </styled.group>
+          </styled.checkBoxContainer>}
+      {(type === "properties for sale") && (
         <>
           <styled.checkBoxContainer>
             <styled.header>Property Types</styled.header>

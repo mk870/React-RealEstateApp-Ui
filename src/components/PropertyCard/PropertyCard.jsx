@@ -53,18 +53,23 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
   };
   const getPropertyType = () => {
     if (getPropertyStatus() === "for_sale") return "Forsale";
+    if (getPropertyStatus() === "off_market") return "Offmarket";
+    if (getPropertyStatus() === "sold") return "Sold";
     else return "Rental";
   };
-  const getPropertyName = (name) => {
+  const getPropertyName = () => {
     if (isFromLocalServer) {
       if (!property.Name) return emptyPropertyName;
       else return shortenString(property.Name, 35);
     } else {
-      if (!name) return emptyPropertyName;
-      else {
-        if (type === "rental") {
-          return name.replace("_", " ");
-        } else return shortenString(name, 35);
+      if (type !== "forsale") {
+        if (property?.description?.type)
+          return property.description.type.replace("_", " ");
+        else return emptyPropertyName;
+      } else {
+        if (property?.branding[0]?.name)
+          return shortenString(property.branding[0].name, 35);
+        else return emptyPropertyName;
       }
     }
   };
@@ -74,6 +79,13 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
       if (type === "rental") {
         if (property?.list_price_max) return property.list_price_max;
         else return "---";
+      } else if (type === "rental recommendations") {
+        if (property?.list_price) return `${property.list_price}`;
+        else return "---";
+      } else if (type === "sold") {
+        if (property?.description?.sold_price) {
+          return millify(property.description.sold_price);
+        } else return "---";
       } else {
         if (property?.list_price) return millify(property.list_price);
         else return "---";
@@ -82,12 +94,16 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
   };
   const getPropertyLocationCity = () => {
     if (isFromLocalServer) return property.City;
-    else return property.location.address.city;
+    else {
+      if (property.location.address?.city)
+        return property.location.address.city;
+      else return "---";
+    }
   };
   const getPropertyLocationCounty = (county) => {
     if (isFromLocalServer) return property.County;
     else {
-      if (!county) return "not available";
+      if (!county) return "---";
       else return county;
     }
   };
@@ -103,6 +119,10 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
     if (type === "rental") {
       if (property?.list_price_max) return property.list_price_max;
       else return "---";
+    } else if (type === "sold") {
+      if (property?.description?.sold_price) {
+        return millify(property.description.sold_price);
+      } else return "---";
     } else {
       if (property?.list_price) return millify(property.list_price);
       else return "---";
@@ -110,7 +130,11 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
   };
   const postPropertyCounty = () => {
     if (property.location?.county?.name) return property.location.county.name;
-    else return "not available";
+    else return "---";
+  };
+  const postPropertyLocationCity = () => {
+    if (property.location.address?.city) return property.location.address.city;
+    else return "---";
   };
   const getBathrooms = () => {
     if (isFromLocalServer) return property.Bathrooms;
@@ -129,7 +153,8 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
     if (isFromLocalServer) return property.Bedrooms;
     else {
       if (type === "rental") {
-        if (property.description?.beds_max) return property.description.beds_max;
+        if (property.description?.beds_max)
+          return property.description.beds_max;
         else return "--";
       } else {
         if (property.description?.beds) return property.description.beds;
@@ -141,7 +166,8 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
     if (isFromLocalServer) return property.Size;
     else {
       if (type === "rental") {
-        if (property.description?.sqft_max) return property.description.sqft_max;
+        if (property.description?.sqft_max)
+          return property.description.sqft_max;
         else return "--";
       } else {
         if (property.description?.sqft) return property.description.sqft;
@@ -169,19 +195,22 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
   };
   const postPropertyBathrooms = () => {
     if (type === "rental") {
-      if (property.description?.baths_max) return property.description.baths_max;
+      if (property.description?.baths_max)
+        return property.description.baths_max;
       else return "--";
     } else {
       if (property.description?.baths) return property.description.baths;
       else return "--";
     }
   };
-  const postPropertyName = (name) => {
-    if (!name) return emptyPropertyName;
-    else {
-      if (type === "rental") {
-        return name.replace("_", " ");
-      } else return name;
+  const postPropertyName = () => {
+    if (type !== "for sale") {
+      if (property?.description?.type)
+        return property.description.type.replace("_", " ");
+      else return emptyPropertyName;
+    } else {
+      if (property?.branding[0]?.name) return property.branding[0].name;
+      else return emptyPropertyName;
     }
   };
   const propertyAmmenitiesIconStyles = () => {
@@ -197,14 +226,10 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
     console.log(property);
     if (accessToken) {
       let data = {
-        Name: postPropertyName(
-          type === "rental"
-            ? property?.description?.type
-            : property?.branding[0]?.name
-        ),
+        Name: postPropertyName(),
         Price: postPropertyPrice(),
         Photo: postPropertyPhoto(),
-        City: property.location.address.city,
+        City: postPropertyLocationCity(),
         Country: property.location.address.country,
         County: postPropertyCounty(),
         Property_id: property.property_id,
@@ -258,20 +283,15 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
       </styled.propertyType>
       <styled.poster src={getPropertyPhoto()} />
       <styled.row>
-        <styled.name>
-          {getPropertyName(
-            type === "rental"
-              ? property.description?.type
-              : property?.branding[0]?.name
-          )}
-        </styled.name>
-        {type === "rental" && (
+        <styled.name>{getPropertyName()}</styled.name>
+        {type === "rental" || type === "rental recommendations" ? (
           <styled.rent>
             ${getPropertyPrice()}
             <span className="span">/month</span>
           </styled.rent>
+        ) : (
+          <styled.rent>${getPropertyPrice()}</styled.rent>
         )}
-        {type === "forsale" && <styled.rent>${getPropertyPrice()}</styled.rent>}
       </styled.row>
       <styled.locationContainer>
         <IoLocationOutline
@@ -279,8 +299,8 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
           size={screenSize > 420 ? 20 : 15}
         />
         <styled.text>
-          {getPropertyLocationCity()},
-          {getPropertyLocationCounty(property.location?.county?.name)},
+          {`${getPropertyLocationCity()},`}{" "}
+          {`${getPropertyLocationCounty(property.location?.county?.name)},`}{" "}
           {getPropertyLocationCountry()}
         </styled.text>
       </styled.locationContainer>
@@ -313,21 +333,25 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
           />
           <styled.amennitiesText>{getSize()} sqft</styled.amennitiesText>
         </styled.amennities>
-        {!isFromLocalServer ? (
-          <styled.addLink onClick={(e) => handlePost(property, e)}>
-            {isLoading ? (
-              <Spinner />
+        {type !== "sold" && (
+          <>
+            {!isFromLocalServer ? (
+              <styled.addLink onClick={(e) => handlePost(property, e)}>
+                {isLoading ? (
+                  <Spinner />
+                ) : (
+                  <AiOutlinePlus
+                    color="aliceblue"
+                    size={screenSize > 520 ? 17 : 14}
+                  />
+                )}
+              </styled.addLink>
             ) : (
-              <AiOutlinePlus
-                color="aliceblue"
-                size={screenSize > 520 ? 17 : 14}
-              />
+              <styled.deleteLink onClick={(e) => handleDelete(e, property.id)}>
+                {isLoading ? <Spinner /> : "Delete"}
+              </styled.deleteLink>
             )}
-          </styled.addLink>
-        ) : (
-          <styled.deleteLink onClick={(e) => handleDelete(e, property.id)}>
-            {isLoading ? <Spinner /> : "Delete"}
-          </styled.deleteLink>
+          </>
         )}
       </styled.row2>
       {postResponse.message && (
