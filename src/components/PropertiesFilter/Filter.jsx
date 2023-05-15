@@ -12,7 +12,7 @@ import { AppContext } from "Context/AppContext";
 //property for sale rental property agents
 
 const Filter = ({ header, type, setApiParams, apiParams }) => {
-  const [openFilters, setOpenFilters] = useState(true);
+  const [openFilters, setOpenFilters] = useState(false);
   const [resetCheckboxes, setResetCheckboxes] = useState(false);
   const [highlightRequiredFields, setHighlightRequiredFields] = useState({
     city: false,
@@ -57,6 +57,7 @@ const Filter = ({ header, type, setApiParams, apiParams }) => {
     stateCode: searchLocation.stateCode,
     sortProperty: "",
     sortAgents: "",
+    agentName: "",
     priceMin: "",
     priceMax: "",
     bedroomsMin: "",
@@ -102,7 +103,7 @@ const Filter = ({ header, type, setApiParams, apiParams }) => {
     } else if (type === "rental properties") {
       setApiParams({
         ...apiParams,
-        stateCode:getstateCode(),
+        stateCode: getstateCode(),
         city: getCity(),
         sortby: filterValues.sortProperty,
         priceMin: filterValues.priceMin,
@@ -117,12 +118,36 @@ const Filter = ({ header, type, setApiParams, apiParams }) => {
         dogsOk: filterValues.dogsOk,
         catsOk: filterValues.catsOk,
         inUnitFeatures: filterValues.propertyUnitFeatures,
-        communityAmmenities: filterValues.communityAmmenities
+        communityAmmenities: filterValues.communityAmmenities,
       });
     } else if (type === "agents") {
-      setApiParams(filterValues);
+      setApiParams({
+        ...apiParams,
+        stateCode: filterValues.stateCode,
+        city: filterValues.city,
+        agentName: filterValues.agentName,
+        sortby: filterValues.sortAgents,
+        priceMax: filterValues.priceMax,
+        priceMin: filterValues.priceMin,
+      });
     } else {
-      console.log("error");
+      setApiParams({
+        ...apiParams,
+        stateCode: getstateCode(),
+        sortby: filterValues.sortProperty,
+        city: getCity(),
+        priceMin: filterValues.priceMin,
+        priceMax: filterValues.priceMax,
+        bedroomsMin: filterValues.bedroomsMin,
+        bedroomsMax: filterValues.bedroomsMax,
+        minBathRooms: filterValues.minBathRooms,
+        maxBathRooms: filterValues.maxBathRooms,
+        propertyType: filterValues.propertyType,
+        minHomeSize: filterValues.minHomeSize,
+        maxHomeSize: filterValues.maxHomeSize,
+        minHomeLotSize: filterValues.minHomeLotSize,
+        maxHomeLotSize: filterValues.maxHomeLotSize,
+      })
     }
   };
   const handleClearAll = () => {
@@ -140,6 +165,7 @@ const Filter = ({ header, type, setApiParams, apiParams }) => {
       minHomeSize: "",
       maxHomeSize: "",
       city: "",
+      agentName: "",
       insideRoomsInProperty: null,
       propertyUnitFeatures: null,
       propertyOutsideFeatures: null,
@@ -167,69 +193,73 @@ const Filter = ({ header, type, setApiParams, apiParams }) => {
         <styled.toggler>
           {openFilters ? (
             <styled.toggleText onClick={() => setOpenFilters(!openFilters)}>
-              hide
+              hide filters
             </styled.toggleText>
           ) : (
             <styled.toggleText onClick={() => setOpenFilters(!openFilters)}>
-              show
+              show more filters
             </styled.toggleText>
           )}
         </styled.toggler>
       </styled.filterController>
-      {openFilters && (
-        <styled.filtersWrapper>
-          <InputField
-            label={"city name"}
-            onChangeFunc={handleCityFunc}
-            inputValue={filterValues.city}
-            isSearch={true}
-            handleOnKeyEnter={null}
-            hasFloatingLabel={false}
-            backgroundColor={"transparent"}
-            size={"medium"}
-          />
-          <SelectField
-            label={"State Code"}
-            type={"location"}
-            value={filterValues.stateCode}
-            handleSelectFunc={handleSelectStateCodeFunc}
-            size={"large"}
-            isRequired={highlightRequiredFields.stateCode}
-          />
-          <InputGroup
-            filterValues={filterValues}
-            setFilterValues={setFilterValues}
-          />
-          <SelectGroup
-            type={type}
-            filterValues={filterValues}
-            setFilterValues={setFilterValues}
-          />
-          <CheckBoxGroup
-            type={type}
-            filterValues={filterValues}
-            setFilterValues={setFilterValues}
-            resetCheckboxes={resetCheckboxes}
-            setResetCheckboxes={setResetCheckboxes}
-          />
-          <styled.btnGroup>
-            <Button
-              buttonText={"Apply Changes"}
-              onClickFunc={handleApplychanges}
-              size={"small"}
-              color={"normal"}
-              type={"click"}
+      <styled.openFilters>
+        <InputField
+          label={"city name"}
+          onChangeFunc={handleCityFunc}
+          inputValue={filterValues.city}
+          isSearch={true}
+          handleOnKeyEnter={null}
+          hasFloatingLabel={false}
+          backgroundColor={"transparent"}
+          size={"medium"}
+          isRequired={type === "agents" ? false : true}
+        />
+        <SelectField
+          label={"State Code"}
+          type={"location"}
+          value={filterValues.stateCode}
+          handleSelectFunc={handleSelectStateCodeFunc}
+          size={"large"}
+          isRequired={type === "agents" ? false : true}
+        />
+        {openFilters && (
+          <styled.filtersWrapper>
+            <InputGroup
+              filterValues={filterValues}
+              setFilterValues={setFilterValues}
+              type={type}
             />
-            <Button
-              buttonText={"Clear All"}
-              onClickFunc={handleClearAll}
-              size={"small"}
-              color={"danger"}
-              type={"click"}
+            <SelectGroup
+              type={type}
+              filterValues={filterValues}
+              setFilterValues={setFilterValues}
             />
-          </styled.btnGroup>
-        </styled.filtersWrapper>
-      )}
+            <CheckBoxGroup
+              type={type}
+              filterValues={filterValues}
+              setFilterValues={setFilterValues}
+              resetCheckboxes={resetCheckboxes}
+              setResetCheckboxes={setResetCheckboxes}
+            />
+          </styled.filtersWrapper>
+        )}
+        <styled.btnGroup>
+          <Button
+            buttonText={"Apply Changes"}
+            onClickFunc={handleApplychanges}
+            size={"small"}
+            color={"normal"}
+            type={"click"}
+          />
+          <Button
+            buttonText={"Clear All"}
+            onClickFunc={handleClearAll}
+            size={"small"}
+            color={"danger"}
+            type={"click"}
+          />
+        </styled.btnGroup>
+      </styled.openFilters>
     </styled.Container>
   );
 };

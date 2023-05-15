@@ -21,8 +21,23 @@ const InputGroup = ({ type, filterValues, setFilterValues }) => {
   const handleMinBathRooms = (value) => {
     setFilterValues({ ...filterValues, minBathRooms: value });
   };
+  const handleAgentName = (value) => {
+    setFilterValues({ ...filterValues, agentName: value });
+  }
   return (
     <styled.Container>
+      {type === "agents" && (
+        <InputField
+          label={"agent name"}
+          onChangeFunc={handleAgentName}
+          inputValue={filterValues.agentName}
+          isSearch={false}
+          backgroundColor={"transparent"}
+          handleOnKeyEnter={null}
+          hasFloatingLabel={true}
+          size={"small"}
+        />
+      )}
       <InputField
         label={"min price(USD)"}
         onChangeFunc={handleMinPrice}
@@ -43,46 +58,50 @@ const InputGroup = ({ type, filterValues, setFilterValues }) => {
         hasFloatingLabel={true}
         size={"small"}
       />
-      <InputField
-        label={"min bathrooms"}
-        onChangeFunc={handleMinBathRooms}
-        inputValue={filterValues.minBathRooms}
-        isSearch={false}
-        backgroundColor={"transparent"}
-        handleOnKeyEnter={null}
-        hasFloatingLabel={true}
-        size={"small"}
-      />
-      <InputField
-        label={"max bathrooms"}
-        onChangeFunc={handleMaxBathRooms}
-        inputValue={filterValues.maxBathRooms}
-        isSearch={false}
-        backgroundColor={"transparent"}
-        handleOnKeyEnter={null}
-        hasFloatingLabel={true}
-        size={"small"}
-      />
-      <InputField
-        label={"min bedrooms"}
-        onChangeFunc={handleMinBedrooms}
-        inputValue={filterValues.bedroomsMin}
-        isSearch={false}
-        backgroundColor={"transparent"}
-        handleOnKeyEnter={null}
-        hasFloatingLabel={true}
-        size={"small"}
-      />
-      <InputField
-        label={"max bedrooms"}
-        onChangeFunc={handleMaxBedrooms}
-        inputValue={filterValues.bedroomsMax}
-        isSearch={false}
-        backgroundColor={"transparent"}
-        handleOnKeyEnter={null}
-        hasFloatingLabel={true}
-        size={"small"}
-      />
+      {type !== "agents" && (
+        <>
+          <InputField
+            label={"min bathrooms"}
+            onChangeFunc={handleMinBathRooms}
+            inputValue={filterValues.minBathRooms}
+            isSearch={false}
+            backgroundColor={"transparent"}
+            handleOnKeyEnter={null}
+            hasFloatingLabel={true}
+            size={"small"}
+          />
+          <InputField
+            label={"max bathrooms"}
+            onChangeFunc={handleMaxBathRooms}
+            inputValue={filterValues.maxBathRooms}
+            isSearch={false}
+            backgroundColor={"transparent"}
+            handleOnKeyEnter={null}
+            hasFloatingLabel={true}
+            size={"small"}
+          />
+          <InputField
+            label={"min bedrooms"}
+            onChangeFunc={handleMinBedrooms}
+            inputValue={filterValues.bedroomsMin}
+            isSearch={false}
+            backgroundColor={"transparent"}
+            handleOnKeyEnter={null}
+            hasFloatingLabel={true}
+            size={"small"}
+          />
+          <InputField
+            label={"max bedrooms"}
+            onChangeFunc={handleMaxBedrooms}
+            inputValue={filterValues.bedroomsMax}
+            isSearch={false}
+            backgroundColor={"transparent"}
+            handleOnKeyEnter={null}
+            hasFloatingLabel={true}
+            size={"small"}
+          />
+        </>
+      )}
     </styled.Container>
   );
 };

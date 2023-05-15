@@ -125,7 +125,7 @@ const Navbar = ({ mobileMenu }) => {
         )}
       </styled.section>
       <styled.notificationsContainer
-        onClick={() => setOpenNotifications(!openNotifications)}
+        onClick={() => setOpenNotifications((value) => !value)}
       >
         <IoMdNotificationsOutline
           size={screenSize > 550 ? 28 : 22}

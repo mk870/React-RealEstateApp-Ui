@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
+import { FaAsterisk } from "react-icons/fa";
 
-import { secondaryThemeColor } from "../../Css/Variables";
+import { redColor, secondaryThemeColor } from "../../Css/Variables";
 import * as styled from "./InputFieldStyles";
 
 const InputField = ({
@@ -14,7 +15,7 @@ const InputField = ({
   backgroundColor,
   hasFloatingLabel,
   size,
-  isRequired
+  isRequired,
 }) => {
   const [hovered, setHovered] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -52,7 +53,7 @@ const InputField = ({
   };
 
   return (
-    <styled.InputContainer inputSize={size}>
+    <styled.InputContainer inputSize={size} isRequired={isRequired}>
       {hasFloatingLabel && (
         <styled.InputLabel hovered={hovered} backgroundColor={backgroundColor}>
           {label}
@@ -78,6 +79,9 @@ const InputField = ({
           color={secondaryThemeColor}
           className="input-icon"
         />
+      )}
+      {isRequired && (
+        <FaAsterisk className="astricks" fontSize={8} color={redColor} />
       )}
       <styled.Input
         onChange={(e) => onChangeFunc(e.target.value)}

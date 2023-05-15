@@ -38,11 +38,20 @@ const Dropdown = ({ notifications, setOpenNotifications }) => {
         </styled.NoNotificationstext>
       ) : (
         notifications.map((item, index) => (
-          <styled.listItem key={index} onClick={() => console.log("viewed",item.Viewed)}>
+          <styled.listItem
+            key={index}
+            onClick={() => console.log("viewed", item.Viewed)}
+          >
             {item.Action === "delete" ? (
-              <MdDeleteForever size={screenSize > 550 ? 35 : 27} color={redColor} />
+              <MdDeleteForever
+                size={screenSize > 550 ? 35 : 27}
+                color={redColor}
+              />
             ) : item.Type === "Agent" ? (
-              <MdRealEstateAgent size={screenSize > 550 ? 35 : 27} color="green" />
+              <MdRealEstateAgent
+                size={screenSize > 550 ? 35 : 27}
+                color="green"
+              />
             ) : (
               <MdMapsHomeWork size={screenSize > 550 ? 35 : 27} color="green" />
             )}

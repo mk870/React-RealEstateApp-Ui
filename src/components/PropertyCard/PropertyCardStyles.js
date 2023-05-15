@@ -1,4 +1,4 @@
-import { mainThemeColor, redColor, secondaryThemeColor, shadow } from "Css/Variables";
+import { mainThemeColor, redColor, secondaryThemeColor } from "Css/Variables";
 import styled from "styled-components";
 
 export const container = styled.div`
@@ -12,8 +12,6 @@ export const container = styled.div`
   min-height: 250px;
   border-radius: 7px;
   box-sizing: border-box;
-  //padding: 5px;
-  //box-shadow: ${shadow};
   cursor: pointer;
   @media (max-width: 920px) {
     width: 200px;

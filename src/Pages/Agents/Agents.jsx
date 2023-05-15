@@ -1,26 +1,50 @@
-import { Page, PageInnerContainer } from 'Css/PageStyles'
-import Filter from 'components/PropertiesFilter/Filter'
-import React from 'react'
-import { useState } from 'react';
+import { Page, PageInnerContainer } from "Css/PageStyles";
+import HttpError from "HttpServices/Error/HttpError";
+import useFetchAgentSearch from "HttpServices/Hooks/Agents/useFetchAgentSearch";
+import CardGrid from "components/CardGrid/CardGrid";
+import Filter from "components/PropertiesFilter/Filter";
+import GridSkeleton from "components/SkeletonLoaders/Grid/GridSkeleton";
+import React from "react";
+import { useState } from "react";
 
 const Agents = () => {
   const [inputValues, setInputValues] = useState({
-    stateCode: "FL",
-    sortby: "newest",
-    city: "Miami",
+    stateCode: "",
+    sortby: "",
+    city: "",
+    priceMin: "",
+    priceMax: "",
+    agentName: "",
+  });
+  const { data, isLoading, error } = useFetchAgentSearch({
+    stateCode: inputValues.stateCode,
+    city: inputValues.city,
+    sortby:inputValues.sortby,
+    priceMin: inputValues.priceMin,
+    priceMax: inputValues.priceMax,
+    agentName: inputValues.agentName,
   });
   return (
     <Page>
       <PageInnerContainer>
-      <Filter
+        <Filter
           header={"Search Agents By Filters"}
-          setValues={setInputValues}
+          setApiParams={setInputValues}
           type={"agents"}
-          values = {inputValues}
+          apiParams={inputValues}
         />
+        {isLoading && <GridSkeleton type={"agents"}/>}
+        {error && <HttpError message={error} size={"large"} />}
+        {data && (
+          <CardGrid
+            contentlist={data}
+            type={"agent"}
+            isFromLocalServer={false}
+          />
+        )}
       </PageInnerContainer>
     </Page>
-  )
-}
+  );
+};
 
-export default Agents
+export default Agents;

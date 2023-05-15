@@ -1,14 +1,24 @@
 import React from "react";
 import * as styled from "components/SkeletonLoaders/Card/CardSkeletonStyles";
 
-const CardSkeleton = () => {
+const CardSkeleton = ({type}) => {
   return (
-    <styled.container>
-      <styled.poster />
-      <styled.textLoader />
-      <styled.textLoader />
-      <styled.textLoader />
-    </styled.container>
+    <>
+      {type === "agents" ? (
+        <styled.agentContainer>
+          <styled.agentPoster />
+          <styled.agentTextLoader />
+          <styled.agentTextLoader2 />
+        </styled.agentContainer>
+      ) : (
+        <styled.container>
+          <styled.poster />
+          <styled.textLoader />
+          <styled.textLoader />
+          <styled.textLoader2 />
+        </styled.container>
+      )}
+    </>
   );
 };
 

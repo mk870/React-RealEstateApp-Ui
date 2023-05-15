@@ -21,6 +21,10 @@ const SelectGroup = ({ type, filterValues, setFilterValues }) => {
   const handleSortAgents = (value) => {
     setFilterValues({ ...filterValues, sortAgents: value });
   }
+  const getSelectFieldType = ()=>{
+    if("properties sold") return "sort sold properties"
+    else return "sort for sale properties"
+  }
   return (
     <styled.Container>
       {(type === "properties for sale" || type === "properties sold") && (
@@ -29,7 +33,7 @@ const SelectGroup = ({ type, filterValues, setFilterValues }) => {
             label={"sort by:"}
             handleSelectFunc={handleSortBy}
             value={filterValues.sortProperty}
-            type={"sort for sale properties"}
+            type={getSelectFieldType()}
             size={"small"}
           />
           <SelectField
