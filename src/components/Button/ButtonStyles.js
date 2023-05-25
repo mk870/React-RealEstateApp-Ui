@@ -13,7 +13,7 @@ export const ButtonField = styled.button`
   text-align: center;
   justify-content: center;
   box-sizing: border-box;
-  padding: 10px;
+  padding: ${(props) => (props.size === "small" ? "5px 8px" : "10px")};;
   span {
     margin-left: 1px;
   }

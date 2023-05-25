@@ -3,15 +3,16 @@ import {
   mainThemeColor,
   secondaryThemeColor,
   whiteColor,
-} from "../../Css/Variables";
+} from "Css/Variables";
 
-export const InputContainer = styled.div`
+export const container = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
   position: relative;
   height: fit-content;
-  width: ${(props) => (props.inputSize === "large" ? "100%" : "auto")};
+  width: 100%;
+  box-sizing: border-box;
   .input-icon {
     position: absolute;
     right: 10px;
@@ -23,21 +24,8 @@ export const InputContainer = styled.div`
   }
 `;
 
-export const Input = styled.input`
-  height: ${(props) =>
-    props.inputSize === "large"
-      ? "35px"
-      : props.inputSize === "medium"
-      ? "30px"
-      : "25px"};
-  width: ${(props) =>
-    props.inputSize === "large"
-      ? "auto"
-      : props.inputSize === "medium"
-      ? "250px"
-      : props.inputSize === "small"
-      ? "180px"
-      : "130px"};
+export const textArea = styled.textarea`
+  min-height: 80px;
   border-radius: 7px;
   font-style: normal;
   font-weight: 400;
@@ -69,10 +57,11 @@ export const Input = styled.input`
     font-size: 12;
   }
 `;
-export const InputLabel = styled.p`
+export const textAreaLabel = styled.p`
   font-size: 14px;
   position: absolute;
   left: 10px;
+  top: -5px;
   padding: 0px 3px 0px 3px;
   color: ${secondaryThemeColor};
   pointer-events: none;
@@ -87,6 +76,7 @@ export const InputLabel = styled.p`
       background-color: ${whiteColor};
       padding: 0px 2px 0px 2px;
     `}
+
   @media (max-width: 600px) {
     font-size: 12;
   }

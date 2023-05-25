@@ -14,5 +14,5 @@ export const deleteResource = (
       message: "resource successfully deleted",
       type: "success",
     });
-  }, 1000);
+  }, 4000);
 };
