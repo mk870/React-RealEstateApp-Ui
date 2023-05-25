@@ -37,10 +37,15 @@ const InputField = ({
   };
   useEffect(() => {
     if (inputValue === "") setHovered(false);
+    else setHovered(true);
   }, [inputValue]);
-
   const inputType = (label) => {
-    if (label.toLowerCase() === "password") {
+    if (
+      label.toLowerCase() === "password" ||
+      label.toLowerCase() === "confirm password" ||
+      label.toLowerCase() === "new password" ||
+      label.toLowerCase() === "old password"
+    ) {
       if (showPassword) return undefined;
       else return "password";
     } else if (label === "max price(USD)") return "number";
@@ -59,7 +64,10 @@ const InputField = ({
           {label}
         </styled.InputLabel>
       )}
-      {label.toLowerCase() === "password" &&
+      {(label.toLowerCase() === "password" ||
+        label.toLowerCase() === "confirm password" ||
+        label.toLowerCase() === "new password" ||
+        label.toLowerCase() === "old password") &&
         (showPassword ? (
           <BsEyeSlash
             className="input-icon"

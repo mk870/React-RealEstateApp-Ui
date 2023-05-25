@@ -14,5 +14,5 @@ export const postResource = (
       message: "data successufully created",
       type: "failed",
     });
-  }, 1000);
+  }, 4000);
 };

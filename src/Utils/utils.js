@@ -54,5 +54,12 @@ export const nullNumberValueChecker = (value) => {
 };
 export const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
-}
+};
 export const realtorKey = process.env.REACT_APP_RAPID_API_KEY;
+
+export const dateConverter = (date) => {
+  const year = date.getFullYear().toString();
+  const month = (date.getMonth() + 1).toString();
+  const day = date.getDate().toString();
+  return `${month}/${day}/${year}`;
+};
