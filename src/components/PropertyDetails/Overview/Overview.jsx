@@ -16,7 +16,12 @@ import * as styled from "./OverviewStyles";
 import { postResource } from "HttpServices/Post/postData";
 import NotificationBar from "components/Notifications/NotificationBar";
 import nullPropertyImage from "Assets/nullPropertyPoster.jpg";
-import { capitalizeFirstLetter } from "Utils/utils";
+import {
+  capitalizeFirstLetter,
+  numberToString,
+  stringToNumber,
+} from "Utils/utils";
+import Spinner from "components/Spinner/Spinner";
 
 const Overview = ({ property, type }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -25,7 +30,7 @@ const Overview = ({ property, type }) => {
     message: "",
     type: "",
   });
-  const { accessToken } = useContext(AppContext);
+  const { accessToken, setPostedItem } = useContext(AppContext);
   const navigate = useNavigate();
   const screenSize = useSelector((state) => state.screenSize.value);
   const iconSize = screenSize > 600 ? 26 : 20;
@@ -42,8 +47,8 @@ const Overview = ({ property, type }) => {
     let replaced;
     if (type.includes("_")) {
       replaced = type.replace("_", " ");
-    }else{
-      replaced = type
+    } else {
+      replaced = type;
     }
     return capitalizeFirstLetter(replaced);
   };
@@ -72,7 +77,7 @@ const Overview = ({ property, type }) => {
   const postPropertyPrice = () => {
     if (type === "for_rent") {
       if (property?.list_price_max) {
-        return property.list_price_max;
+        return numberToString(property.list_price_max);
       } else return "---";
     } else {
       if (property?.list_price) {
@@ -87,31 +92,33 @@ const Overview = ({ property, type }) => {
   const getPropertyBedrooms = () => {
     if (type === "for_rent") {
       if (property?.description?.beds_max) {
-        return property.description.beds_max;
+        return numberToString(property.description.beds_max);
       } else return "--";
     } else {
       if (property?.description?.beds) {
-        return property.description.beds;
+        return numberToString(property.description.beds);
       } else return "--";
     }
   };
   const getPropertyBathrooms = () => {
     if (type === "for_rent") {
       if (property?.description?.baths_max) {
-        return property.description.baths_max;
+        return numberToString(property.description.baths_max);
       } else return "--";
     } else {
       if (property?.description?.baths) {
-        return property.description.baths;
+        return numberToString(property.description.baths);
       } else return "--";
     }
   };
   const getpropertySize = () => {
     if (type === "for_rent") {
-      if (property?.description?.sqft_max) return property.description.sqft_max;
+      if (property?.description?.sqft_max)
+        return numberToString(property.description.sqft_max);
       else return "--";
     } else {
-      if (property?.description?.sqft) return property.description.sqft;
+      if (property?.description?.sqft)
+        return numberToString(property.description.sqft);
       else return "--";
     }
   };
@@ -194,7 +201,18 @@ const Overview = ({ property, type }) => {
   ];
   const postPropertyPhoto = () => {
     if (property?.photos[0]?.href) return property.photos[0].href;
-    else return null;
+    else return "";
+  };
+  const postPropertyLocationCity = () => {
+    if (property.location.address?.city) return property.location.address.city;
+    else return "---";
+  };
+  const postCountry = () => {
+    if (property?.location?.address?.country) {
+      return property.location.address.country;
+    } else {
+      return "---";
+    }
   };
   const handlePost = (e) => {
     e.stopPropagation();
@@ -202,10 +220,10 @@ const Overview = ({ property, type }) => {
     console.log(property);
     if (accessToken) {
       const propertyData = {
-        Property_id: property.property_id,
-        Status: property.status,
-        City: property.location.address.city,
-        Country: property.location.address.country,
+        Property_id: stringToNumber(property.property_id),
+        Status: property.status ? property.status : "---",
+        City: postPropertyLocationCity(),
+        Country: postCountry(),
         Name: getPropertyName(),
         Price: postPropertyPrice(),
         Photo: postPropertyPhoto(),
@@ -214,12 +232,13 @@ const Overview = ({ property, type }) => {
         Size: getpropertySize(),
       };
       postResource(
-        "addproperty",
+        "property",
         propertyData,
         accessToken,
         setIsLoading,
         setPostResponse,
-        postResponse
+        postResponse,
+        setPostedItem
       );
     } else navigate("/login");
   };
@@ -239,7 +258,7 @@ const Overview = ({ property, type }) => {
         <styled.overviewWrapper>
           <styled.row>
             <styled.name>{getPropertyName()}</styled.name>
-            <styled.price>Price:{" "}{getPropertyPrice()}</styled.price>
+            <styled.price>Price: {getPropertyPrice()}</styled.price>
           </styled.row>
           <styled.status>{getPropertyStatus()}</styled.status>
           <styled.grid>
@@ -254,10 +273,10 @@ const Overview = ({ property, type }) => {
             ))}
           </styled.grid>
           <Button
-            buttonText={isLoading ? "loading..." : "Add to watchlist"}
+            buttonText={isLoading ? <Spinner/> : "Add to watchlist"}
             type={"click"}
             color={"normal"}
-            size={screenSize>600?"medium":"small"}
+            size={screenSize > 600 ? "medium" : "small"}
             onClickFunc={handlePost}
           />
         </styled.overviewWrapper>

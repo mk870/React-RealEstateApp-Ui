@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Navigate } from "react-router-dom";
 
-import { AppContext } from "../Context/AppContext";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/Signup/SignUp";
 import Verification from "../Pages/Verification/Verification";
@@ -18,8 +17,7 @@ import PropertiesForsale from "Pages/PropertiesForSale/PropertiesForSale";
 import PropertiesForsaleWatchlist from "Pages/PropertiesForSaleWatchlist/PropertiesForSaleWatchlist";
 import SoldProperties from "Pages/SoldProperties/SoldProperties";
 
-const RoutesList = () => {
-  const { accessToken } = useContext(AppContext);
+const RoutesList = (accessToken) => {
   const routes = [
     {
       path: "/",

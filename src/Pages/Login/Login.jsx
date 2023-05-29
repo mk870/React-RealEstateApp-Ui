@@ -12,7 +12,7 @@ import {
 } from "../../Utils/utils";
 import * as styled from "./LoginStyles";
 import Spinner from "../../components/Spinner/Spinner";
-import { postResource } from "../../HttpServices/Post/postData";
+import { loginRequest} from "../../HttpServices/Post/postData";
 import NotificationBar from "../../components/Notifications/NotificationBar";
 import { useContext } from "react";
 import { AppContext } from "Context/AppContext";
@@ -54,16 +54,14 @@ const Login = () => {
           Email: loginUserData.email,
           Password: loginUserData.password,
         };
-        postResource(
-          "login",
+        loginRequest(
           userData,
-          null,
           setIsLoading,
           setPostResponse,
+          setAccessToken,
           postResponse
         );
         setLoginUserData({ ...loginUserData, email: "", password: "" });
-        setAccessToken("newtokenbby")
       } else if (loginUserData.email === "" && loginUserData.password !== "") {
         setIsEmailValidationError(true);
         setIsLoading(false);

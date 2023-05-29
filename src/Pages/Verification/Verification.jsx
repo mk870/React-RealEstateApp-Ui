@@ -1,32 +1,41 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 import * as styled from "./VerificationStyles";
-import { postResource } from "../../HttpServices/Post/postData";
 import HttpError from "../../HttpServices/Error/HttpError";
+import { AppContext } from "Context/AppContext";
+import { backendUrl } from "Utils/utils";
 
 const Verification = () => {
-  const [response, setResponse] = useState({
-    message: null,
-    type: null,
-  });
-  const [isLoading, setIsLoading] = useState(true);
   const { token } = useParams();
+  const { setAccessToken } = useContext(AppContext);
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   useEffect(() => {
-    postResource("backend", token, null, setIsLoading, setResponse, response);
-  }, [token]);
+    axios
+      .get(backendUrl + `verification/${token}`)
+      .then((data) => {
+        setIsLoading(false);
+        setData(data.data);
+        setAccessToken(data.data.accessToken);
+      })
+      .catch((e) => {
+        setIsLoading(false);
+        setError(e.message);
+      });
+  }, []);
   return (
     <styled.container>
       {isLoading && <styled.loader></styled.loader>}
-      {response.type === "failed" && (
-        <HttpError message={response.message} size={"large"} />
-      )}
-      {response.type === "success" && (
+      {error && <HttpError message={error} size={"large"} />}
+      {data && (
         <styled.messageContainer>
           <FaRegCheckCircle size={18} className="success" />
-          <styled.Text>{response.message}</styled.Text>
+          <styled.Text>{"Verification Successful"}</styled.Text>
         </styled.messageContainer>
       )}
     </styled.container>

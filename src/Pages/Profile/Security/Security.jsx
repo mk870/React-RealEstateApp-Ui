@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { AiFillDelete, AiFillLock } from "react-icons/ai";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useRef } from "react";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 import * as styled from "./SecurityStyles";
 import Modal from "components/Modal/Modal";
@@ -11,7 +12,7 @@ import Alert from "components/Alert/Alert";
 import Spinner from "components/Spinner/Spinner";
 import { AppContext } from "Context/AppContext";
 import NotificationBar from "components/Notifications/NotificationBar";
-import { deleteResource } from "HttpServices/Delete/deleteResource";
+import { deleteUser } from "HttpServices/Delete/deleteResource";
 
 const Security = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -27,20 +28,26 @@ const Security = () => {
     type: "",
   });
   const screenSize = useSelector((state) => state.screenSize.value);
-  const user = useSelector((state) => state.user.value);
-  const { accessToken } = useContext(AppContext);
+  const user = useSelector((state) => state.userProfile.value);
+  const { accessToken, setAccessToken, setUpdatedItem } = useContext(AppContext);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const iconSize = screenSize > 600 ? 20 : 14;
   const handleDelete = () => {
-    setIsLoading(true);
-    console.log("deleted");
-    deleteResource(
-      "delete",
-      user.id,
-      accessToken,
-      setIsLoading,
-      setDeleteResponse,
-      deleteResponse
-    );
+    if (user && accessToken) {
+      setIsLoading(true);
+      deleteUser(
+        user.Id,
+        accessToken,
+        setIsLoading,
+        setDeleteResponse,
+        deleteResponse,
+        navigate,
+        setAccessToken,
+        dispatch
+      );
+      setOpenAlert((value) => !value);
+    } else navigate("/login");
   };
   useEffect(() => {
     if (deleteResponse && notificationBarRef.current) {
@@ -83,6 +90,7 @@ const Security = () => {
           setIsLoading={setIsLoading}
           httpResponse={updateResponse}
           setHttpResponse={setUpdateResponse}
+          setUpdatedItem={setUpdatedItem}
         />
       )}
       {openAlert && (

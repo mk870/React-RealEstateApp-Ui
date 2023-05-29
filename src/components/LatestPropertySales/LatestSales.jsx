@@ -4,7 +4,7 @@ import { latestsalesList } from "./Data/latestSalesList";
 import millify from "millify";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addPropertyCoordinates } from "Redux/Slices/PropertyCoordinatesSlice";
+import { addPropertyCoordinates } from "Redux/Slices/Property/PropertyCoordinatesSlice";
 
 const LatestSales = () => {
   const navigate = useNavigate();

@@ -44,6 +44,7 @@ export const pageChildren = styled.div`
   min-height: 100%;
   box-sizing: border-box;
   padding: 2rem;
+  flex:1;
   @media (max-width: 720px) {
     padding: 10px;
   }

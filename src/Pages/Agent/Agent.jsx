@@ -24,6 +24,8 @@ import useFetchAgent from "HttpServices/Hooks/Agents/useFetchAgent";
 import ToggleableGrid from "components/ToggleableGrid/ToggleableGrid";
 import PropertySkeleton from "components/SkeletonLoaders/Property/PropertySkeleton";
 import GridSkeleton from "components/SkeletonLoaders/Grid/GridSkeleton";
+import Spinner from "components/Spinner/Spinner";
+import { stringToNumber } from "Utils/utils";
 
 const Agent = () => {
   const { agentId } = useParams();
@@ -31,7 +33,7 @@ const Agent = () => {
   const iconSize = screenSize > 600 ? 26 : 20;
   const [isLoading, setIsLoading] = useState(false);
   const notificationBarRef = useRef(null);
-  const { accessToken } = useContext(AppContext);
+  const { accessToken, setPostedItem } = useContext(AppContext);
   const navigate = useNavigate();
   const [postResponse, setPostResponse] = useState({
     message: "",
@@ -117,15 +119,16 @@ const Agent = () => {
       let data = {
         Name: getName(),
         Photo: postPhoto(),
-        Agent_id: agentId,
+        Agent_id: stringToNumber(agentId),
       };
       postResource(
-        "addproperty",
+        "agent",
         data,
         accessToken,
         setIsLoading,
         setPostResponse,
-        postResponse
+        postResponse,
+        setPostedItem
       );
     } else navigate("/login");
   };
@@ -237,7 +240,7 @@ const Agent = () => {
               </styled.text>
             </styled.bio>
             <Button
-              buttonText={isLoading ? "loading..." : "Add to watchlist"}
+              buttonText={isLoading ? <Spinner/> : "Add to watchlist"}
               size={"medium"}
               color={"normal"}
               type={"click"}

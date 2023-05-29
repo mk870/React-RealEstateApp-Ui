@@ -11,7 +11,7 @@ import {
 } from "../../Utils/utils";
 import * as styled from "./SignUpStyles";
 import Spinner from "../../components/Spinner/Spinner";
-import { postResource } from "../../HttpServices/Post/postData";
+import { signupRequest } from "../../HttpServices/Post/postData";
 import NotificationBar from "../../components/Notifications/NotificationBar";
 
 const SignUp = () => {
@@ -80,10 +80,8 @@ const SignUp = () => {
           Email: signUpData.email,
           Password: signUpData.password,
         };
-        postResource(
-          "signin",
+        signupRequest(
           userData,
-          null,
           setIsLoading,
           setPostResponse,
           postResponse

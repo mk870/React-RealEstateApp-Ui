@@ -52,24 +52,27 @@ export const inputContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  //border:1px solid red;
 `;
 export const search = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
-background-color:${mainThemeColor};
-box-sizing:border-box;
-padding: 9px;
-border-radius: 5px;
-margin-left: 5px;
-@media (max-width: 460px) {
-  padding: 7px;
-}
-@media (max-width: 360px) {
-  margin-left: 2px;
-}
-`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${mainThemeColor};
+  box-sizing: border-box;
+  padding: 9px;
+  border-radius: 5px;
+  margin-left: 5px;
+  &:hover{
+    background-color: rgba(71,91,232,0.8);
+    cursor: pointer;
+  }
+  @media (max-width: 460px) {
+    padding: 7px;
+  }
+  @media (max-width: 360px) {
+    margin-left: 2px;
+  }
+`;
 
 export const notificationsContainer = styled.div`
   width: auto;
@@ -91,15 +94,16 @@ export const notificationsCount = styled.div`
   position: absolute;
   top: -5%;
   right: -5%;
+  padding: 2px;
   @media (max-width: 550px) {
     width: 12px;
-  height: 12px;
+    height: 12px;
   }
   .count {
     color: ${whiteColor};
     font-size: 11px;
     @media (max-width: 550px) {
-    font-size: 10px;
-  }
+      font-size: 10px;
+    }
   }
 `;

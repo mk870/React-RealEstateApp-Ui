@@ -1,18 +1,45 @@
+import { backendUrl } from "Utils/utils";
+import axios from "axios";
+
 export const updateResource = (
- url,
- data,
- accessToken,
- setIsLoading,
- setUpdateResponse,
- updateResponse
+  url,
+  data,
+  accessToken,
+  setIsLoading,
+  setUpdateResponse,
+  updateResponse,
+  setUpdatedItem
 ) => {
- console.log("updated", data, accessToken,url);
- setTimeout(() => {
-   setIsLoading(false);
-   setUpdateResponse({
-     ...updateResponse,
-     message: "data successufully updated",
-     type: "failed",
-   });
- }, 4000);
+  axios
+    .put(backendUrl + url, data, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then((res) => {
+      setIsLoading(false);
+      setUpdateResponse({
+        ...updateResponse,
+        message: res.data,
+        type: "success",
+      });
+      setUpdatedItem(data)
+    })
+    .catch((e) => {
+      if (e.response?.data?.error !== "") {
+        setUpdateResponse({
+          ...updateResponse,
+          message: e.response?.data?.error,
+          type: "failed",
+        });
+      }
+      if (JSON.stringify(e).message === "Network Error") {
+        setUpdateResponse({
+          ...updateResponse,
+          message: "your internet connection is poor",
+          type: "failed",
+        });
+      }
+      setIsLoading(false);
+    });
 };

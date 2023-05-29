@@ -1,15 +1,15 @@
 import React from "react";
-import * as styled from "./AddressDetailsStyles";
 import { useSelector } from "react-redux";
-import { mainThemeColor } from "Css/Variables";
 import { AiOutlineNumber } from "react-icons/ai";
 import { GiRoad, GiTexas } from "react-icons/gi";
 import { FaCity, FaFlagUsa } from "react-icons/fa";
+
+import * as styled from "./AddressDetailsStyles";
+import { mainThemeColor } from "Css/Variables";
 import EditContainer from "components/EditContainer/EditContainer";
 import { nullStringValueChecker } from "Utils/utils";
 
-const AddressDetails = () => {
-  const user = useSelector((state) => state.user.value);
+const AddressDetails = ({user}) => {
   const screenSize = useSelector((state) => state.screenSize.value);
   const iconSize = screenSize > 600 ? 26 : 20;
   const iconStyles = () => {
@@ -23,27 +23,27 @@ const AddressDetails = () => {
   const location = [
     {
       name: "Street Number",
-      value: nullStringValueChecker(user.streetNumber),
+      value: nullStringValueChecker(user?.StreetNumber),
       icon: <AiOutlineNumber size={iconSize} style={iconStyles()} />,
     },
     {
       name: "Street Name",
-      value: nullStringValueChecker(user.streetName),
+      value: nullStringValueChecker(user?.StreetName),
       icon: <GiRoad size={iconSize} style={iconStyles()} />,
     },
     {
       name: "City",
-      value: nullStringValueChecker(user.city),
+      value: nullStringValueChecker(user?.City),
       icon: <FaCity size={iconSize} style={iconStyles()} />,
     },
     {
       name: "State/Province",
-      value: nullStringValueChecker(user.state),
+      value: nullStringValueChecker(user?.State),
       icon: <GiTexas size={iconSize} style={iconStyles()} />,
     },
     {
       name: "Country",
-      value: nullStringValueChecker(user.country),
+      value: nullStringValueChecker(user?.Country),
       icon: <FaFlagUsa size={iconSize} style={iconStyles()} />,
     },
   ];
