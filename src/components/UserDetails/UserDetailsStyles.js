@@ -21,7 +21,7 @@ export const loginText = styled.p`
   &:hover {
     cursor: pointer;
   }
-  @media (max-width:550px) {
+  @media (max-width: 550px) {
     font-size: 12px;
     padding: 7px 12px;
   }
@@ -38,21 +38,30 @@ export const initials = styled.p`
   text-transform: uppercase;
   background-color: ${({ backGround }) => (backGround ? backGround : "white")};
   color: ${whiteColor};
-  margin-right:10px;
+  margin-right: 10px;
   font-size: 14px;
-  @media (max-width:550px) {
+  @media (max-width: 550px) {
     font-size: 12px;
     padding: 7px 9px;
-    margin-right:5px;
+    margin-right: 5px;
+  }
+`;
+export const profilePhoto = styled.img`
+  height: 25px;
+  width: 25px;
+  border-radius: 100%;
+  @media (max-width: 550px) {
+    height: 20px;
+    width: 20px;
   }
 `;
 export const name = styled.p`
   margin: 0;
   font-size: 14px;
   color: ${secondaryThemeColor};
-  margin-right:10px;
-  @media (max-width:550px) {
+  margin-right: 10px;
+  @media (max-width: 550px) {
     font-size: 11px;
-    margin-right:5px;
+    margin-right: 5px;
   }
 `;

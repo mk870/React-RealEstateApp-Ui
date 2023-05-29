@@ -25,12 +25,12 @@ const AgentCard = ({ agent, isFromLocalServer }) => {
     message: "",
     type: "",
   });
-  const { accessToken } = useContext(AppContext);
+  const { accessToken, setDeletedItemId, setPostedItem } = useContext(AppContext);
   const navigate = useNavigate();
   const getPhoto = () => {
     if (isFromLocalServer) {
-      if (agent.Photo === "null") return emptyProfile;
-      else return agent.Photo;
+      if (agent.photo === "null") return emptyProfile;
+      else return agent.photo;
     } else {
       if (agent?.photo?.href) return agent.photo.href;
       else return emptyProfile;
@@ -41,7 +41,7 @@ const AgentCard = ({ agent, isFromLocalServer }) => {
     else return "null";
   };
   const getName = () => {
-    if (isFromLocalServer) return shortenString(agent.Name,35);
+    if (isFromLocalServer) return shortenString(agent.name,35);
     else {
       if (agent.full_name) return shortenString(agent.full_name,35);
       else return "not available";
@@ -52,7 +52,7 @@ const AgentCard = ({ agent, isFromLocalServer }) => {
     else return "not available";
   };
   const getAgentId = () => {
-    if (isFromLocalServer) return agent.Agent_id;
+    if (isFromLocalServer) return agent.agent_id;
     else return agent.advertiser_id;
   };
   const onNavigate = () => {
@@ -74,12 +74,13 @@ const AgentCard = ({ agent, isFromLocalServer }) => {
         Agent_id: agent.advertiser_id,
       };
       postResource(
-        "addproperty",
+        "agent",
         data,
         accessToken,
         setIsLoading,
         setPostResponse,
-        postResponse
+        postResponse,
+        setPostedItem
       );
     } else navigate("/login");
   };
@@ -88,12 +89,13 @@ const AgentCard = ({ agent, isFromLocalServer }) => {
     if (accessToken) {
       setIsLoading(true);
       deleteResource(
-        "delete",
+        "agent",
         id,
         accessToken,
         setIsLoading,
         setDeleteResponse,
-        deleteResponse
+        deleteResponse,
+        setDeletedItemId
       );
     } else navigate("/login");
   };
@@ -113,7 +115,7 @@ const AgentCard = ({ agent, isFromLocalServer }) => {
           {isLoading ? <Spinner /> : "Add"}
         </styled.addLink>
       ) : (
-        <styled.deleteLink onClick={(e) => handleDelete(e, agent.Agent_id)}>
+        <styled.deleteLink onClick={(e) => handleDelete(e, agent.id)}>
           {isLoading ? <Spinner /> : "Delete"}
         </styled.deleteLink>
       )}

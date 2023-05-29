@@ -7,6 +7,7 @@ import { AppContext } from "../../Context/AppContext";
 import { secondaryThemeColor } from "Css/Variables";
 import DropDown from "./ProfileDropDown/DropDown";
 import * as styled from "./UserDetailsStyles";
+import { userDataNullChecker } from "Utils/utils";
 
 const UserDetails = () => {
   const [openDropDown, setOpenDropDown] = useState(false);
@@ -27,9 +28,14 @@ const UserDetails = () => {
       )}
       {accessToken && (
         <styled.userInfoContainer>
-          <styled.initials backGround={user.userTheme}>
-            {getUserInitial(user.firstName)}
-          </styled.initials>
+          {!userDataNullChecker(user.profilePhoto) && (
+            <styled.initials backGround={user.themeColor}>
+              {getUserInitial(user.firstName)}
+            </styled.initials>
+          )}
+          {userDataNullChecker(user.profilePhoto) && (
+            <styled.profilePhoto src={user.profilePhoto} alt="pic" />
+          )}
           {screenSize > 600 && <styled.name>{user.firstName}</styled.name>}
           {openDropDown ? (
             <BsChevronDown

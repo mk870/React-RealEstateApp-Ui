@@ -9,14 +9,14 @@ import { useDispatch, useSelector } from "react-redux";
 
 import * as styled from "components/PropertyCard/PropertyCardStyles";
 import emptyPoster from "Assets/nullPropertyPoster.jpg";
-import { shortenString } from "Utils/utils";
+import { numberToString, shortenString, stringToNumber } from "Utils/utils";
 import { mainThemeColor, secondaryThemeColor } from "Css/Variables";
 import { AppContext } from "Context/AppContext";
 import { postResource } from "HttpServices/Post/postData";
 import { deleteResource } from "HttpServices/Delete/deleteResource";
 import NotificationBar from "components/Notifications/NotificationBar";
 import Spinner from "components/Spinner/Spinner";
-import { addPropertyCoordinates } from "Redux/Slices/PropertyCoordinatesSlice";
+import { addPropertyCoordinates } from "Redux/Slices/Property/PropertyCoordinatesSlice";
 
 const PropertyCard = ({ property, type, isFromLocalServer }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -29,26 +29,27 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
     message: "",
     type: "",
   });
-  const { accessToken } = useContext(AppContext);
+  const { accessToken, setDeletedItemId, setPostedItem } =
+    useContext(AppContext);
   const dispatch = useDispatch();
   const screenSize = useSelector((state) => state.screenSize.value);
   const navigate = useNavigate();
   const emptyPropertyName = "Property name unavailable";
   const getPropertyPhoto = () => {
     if (isFromLocalServer) {
-      if (!property.Photo) return emptyPoster;
-      else return property.Photo;
+      if (!property.photo) return emptyPoster;
+      else return property.photo;
     } else {
       if (!property.primary_photo?.href) return emptyPoster;
       else return property.primary_photo.href;
     }
   };
   const getPropertyId = () => {
-    if (isFromLocalServer) return property.Property_id;
+    if (isFromLocalServer) return property.property_id;
     else return property.property_id;
   };
   const getPropertyStatus = () => {
-    if (isFromLocalServer) return property.Status;
+    if (isFromLocalServer) return property.status;
     else return property.status;
   };
   const getPropertyType = () => {
@@ -59,8 +60,8 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
   };
   const getPropertyName = () => {
     if (isFromLocalServer) {
-      if (!property.Name) return emptyPropertyName;
-      else return shortenString(property.Name, 35);
+      if (!property.name) return emptyPropertyName;
+      else return shortenString(property.name, 35);
     } else {
       if (type !== "forsale") {
         if (property?.description?.type)
@@ -74,7 +75,7 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
     }
   };
   const getPropertyPrice = () => {
-    if (isFromLocalServer) return property.Price;
+    if (isFromLocalServer) return property.price;
     else {
       if (type === "rental") {
         if (property?.list_price_max) return property.list_price_max;
@@ -93,7 +94,7 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
     }
   };
   const getPropertyLocationCity = () => {
-    if (isFromLocalServer) return property.City;
+    if (isFromLocalServer) return property.city;
     else {
       if (property.location.address?.city)
         return property.location.address.city;
@@ -101,23 +102,28 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
     }
   };
   const getPropertyLocationCounty = (county) => {
-    if (isFromLocalServer) return property.County;
+    if (isFromLocalServer) return property.county;
     else {
       if (!county) return "---";
       else return county;
     }
   };
   const getPropertyLocationCountry = () => {
-    if (isFromLocalServer) return property.Country;
-    else return property.location.address.country;
+    if (isFromLocalServer) return property.country;
+    else {
+      if (property?.location?.address?.country) {
+        return property.location.address.country;
+      } else return "---";
+    }
   };
   const postPropertyPhoto = () => {
-    if (!property.primary_photo?.href) return null;
+    if (!property.primary_photo?.href) return "";
     else return property.primary_photo.href;
   };
   const postPropertyPrice = () => {
     if (type === "rental") {
-      if (property?.list_price_max) return property.list_price_max;
+      if (property?.list_price_max)
+        return numberToString(property.list_price_max);
       else return "---";
     } else if (type === "sold") {
       if (property?.description?.sold_price) {
@@ -137,7 +143,7 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
     else return "---";
   };
   const getBathrooms = () => {
-    if (isFromLocalServer) return property.Bathrooms;
+    if (isFromLocalServer) return property.bathrooms;
     else {
       if (type === "rental") {
         if (property.description.baths_max)
@@ -150,7 +156,7 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
     }
   };
   const getBedrooms = () => {
-    if (isFromLocalServer) return property.Bedrooms;
+    if (isFromLocalServer) return property.bedrooms;
     else {
       if (type === "rental") {
         if (property.description?.beds_max)
@@ -163,7 +169,7 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
     }
   };
   const getSize = () => {
-    if (isFromLocalServer) return property.Size;
+    if (isFromLocalServer) return property.size;
     else {
       if (type === "rental") {
         if (property.description?.sqft_max)
@@ -177,29 +183,34 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
   };
   const postPropertySize = () => {
     if (type === "rental") {
-      if (property.description?.sqft_max) return property.description.sqft_max;
+      if (property.description?.sqft_max)
+        return numberToString(property.description.sqft_max);
       else return "--";
     } else {
-      if (property.description?.sqft) return property.description.sqft;
+      if (property.description?.sqft)
+        return numberToString(property.description.sqft);
       else return "--";
     }
   };
   const postPropertyBedrooms = () => {
     if (type === "rental") {
-      if (property.description?.beds_max) return property.description.beds_max;
+      if (property.description?.beds_max)
+        return numberToString(property.description.beds_max);
       else return "--";
     } else {
-      if (property.description?.beds) return property.description.beds;
+      if (property.description?.beds)
+        return numberToString(property.description.beds);
       else return "--";
     }
   };
   const postPropertyBathrooms = () => {
     if (type === "rental") {
       if (property.description?.baths_max)
-        return property.description.baths_max;
+        return numberToString(property.description.baths_max);
       else return "--";
     } else {
-      if (property.description?.baths) return property.description.baths;
+      if (property.description?.baths)
+        return numberToString(property.description.baths);
       else return "--";
     }
   };
@@ -220,31 +231,38 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
       background: "rgba(71,91,232,0.1)",
     };
   };
+  const postCountry = () => {
+    if (property?.location?.address?.country) {
+      return property.location.address.country;
+    } else {
+      return "---";
+    }
+  };
   const handlePost = (property, e) => {
     e.stopPropagation();
     setIsLoading(true);
-    console.log(property);
     if (accessToken) {
       let data = {
         Name: postPropertyName(),
         Price: postPropertyPrice(),
         Photo: postPropertyPhoto(),
         City: postPropertyLocationCity(),
-        Country: property.location.address.country,
+        Country: postCountry(),
         County: postPropertyCounty(),
-        Property_id: property.property_id,
-        Status: property.status,
+        Property_id: stringToNumber(property.property_id),
+        Status: property.status ? property.status : "---",
         Size: postPropertySize(),
         Bedrooms: postPropertyBedrooms(),
         Bathrooms: postPropertyBathrooms(),
       };
       postResource(
-        "addproperty",
+        "property",
         data,
         accessToken,
         setIsLoading,
         setPostResponse,
-        postResponse
+        postResponse,
+        setPostedItem
       );
     } else navigate("/login");
   };
@@ -253,12 +271,13 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
     if (accessToken) {
       setIsLoading(true);
       deleteResource(
-        "delete",
+        "property",
         id,
         accessToken,
         setIsLoading,
         setDeleteResponse,
-        deleteResponse
+        deleteResponse,
+        setDeletedItemId
       );
     } else navigate("/login");
   };

@@ -1,11 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import { screenSizeSlice } from "./Slices/ScreenSizeSlice";
-import { userSlice } from "./Slices/UserSlice";
-import { propertiesForRentSlice } from "./Slices/PropertiesForRentSlice";
-import { propertiesToBuySlice } from "./Slices/PropertiesToBuySlice";
-import { propertyCoordinatesSlice } from "./Slices/PropertyCoordinatesSlice";
-import { notificationsSlice } from "./Slices/NotificationsSlice";
+import { userSlice } from "./Slices/User/UserSlice";
+import { propertiesForRentSlice } from "./Slices/Property/PropertiesForRentSlice";
+import { propertiesToBuySlice } from "./Slices/Property/PropertiesToBuySlice";
+import { propertyCoordinatesSlice } from "./Slices/Property/PropertyCoordinatesSlice";
+import { notificationsSlice } from "./Slices/Notifications/NotificationsSlice";
+import { userProfileSlice } from "./Slices/User/userProfile";
 
 export const reduxStore = configureStore({
   reducer: {
@@ -15,5 +16,6 @@ export const reduxStore = configureStore({
     propertiesToBuy: propertiesToBuySlice.reducer,
     propertyCoordinates: propertyCoordinatesSlice.reducer,
     notifications: notificationsSlice.reducer,
+    userProfile: userProfileSlice.reducer,
   },
 });

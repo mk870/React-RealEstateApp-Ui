@@ -6,7 +6,7 @@ export const container = styled.div`
   align-items: flex-start;
   justify-content: start;
   flex-direction: column;
-  z-index: 10;
+  z-index: 15;
   .date-picker {
     height: 25px;
     display: flex;

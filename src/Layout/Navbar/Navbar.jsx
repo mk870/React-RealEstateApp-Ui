@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineMenu } from "react-icons/ai";
@@ -14,6 +14,9 @@ import { AppContext } from "Context/AppContext";
 import InputField from "components/InputField/InputField";
 import SearchDropDown from "components/locationQueryDropDown/DropDown";
 import { whiteColor } from "Css/Variables";
+import useFetchNotifications from "HttpServices/Hooks/Backend/useFetchNotifications";
+import Spinner from "components/Spinner/Spinner";
+import NotificationBar from "components/Notifications/NotificationBar";
 
 const Navbar = ({ mobileMenu }) => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
@@ -21,10 +24,19 @@ const Navbar = ({ mobileMenu }) => {
   const [openSearchDropDown, setOpenSearchDropDown] = useState(false);
   const [city, setCity] = useState("");
   const [stateCode, setStateCode] = useState("");
+  const [notificationsResponse, setNotificationsResponse] = useState({
+    message: "",
+    type: "",
+  });
   const screenSize = useSelector((state) => state.screenSize.value);
   const notifications = useSelector((state) => state.notifications.value);
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const notificationBarRef = useRef(null);
+  const { isLoading } = useFetchNotifications({
+    setNotificationsResponse,
+    notificationsResponse,
+  });
   const { accessToken, setSearchLocation, searchLocation } =
     useContext(AppContext);
   const onNavigate = () => {
@@ -79,6 +91,11 @@ const Navbar = ({ mobileMenu }) => {
       setOpenSearchDropDown(false);
     }
   }, [city]);
+  useEffect(() => {
+    if (notificationsResponse && notificationBarRef.current) {
+      notificationBarRef.current.showPopup();
+    }
+  }, [notificationsResponse, notificationBarRef]);
   return (
     <styled.container mobileMenu={mobileMenu}>
       {mobileMenu && (
@@ -124,25 +141,36 @@ const Navbar = ({ mobileMenu }) => {
           </styled.inputContainer>
         )}
       </styled.section>
-      <styled.notificationsContainer
-        onClick={() => setOpenNotifications((value) => !value)}
-      >
-        <IoMdNotificationsOutline
-          size={screenSize > 550 ? 28 : 22}
-          className="notifications-icon"
-        />
-        {accessToken && notifications.length > 1 && (
-          <styled.notificationsCount>
-            <span className="count">{notifications.length}</span>
-          </styled.notificationsCount>
-        )}
-      </styled.notificationsContainer>
+      {isLoading ? (
+        <div style={{paddingRight:"5px"}}><Spinner /></div>
+      ) : (
+        <styled.notificationsContainer
+          onClick={() => setOpenNotifications((value) => !value)}
+        >
+          <IoMdNotificationsOutline
+            size={screenSize > 550 ? 28 : 22}
+            className="notifications-icon"
+          />
+          {accessToken && notifications.length > 1 && (
+            <styled.notificationsCount>
+              <span className="count">{notifications.length}</span>
+            </styled.notificationsCount>
+          )}
+        </styled.notificationsContainer>
+      )}
       <UserDetails />
       {openMobileMenu && <Drawer setOpenMobileMenu={setOpenMobileMenu} />}
       {openNotifications && (
         <Dropdown
           setOpenNotifications={setOpenNotifications}
           notifications={notifications}
+        />
+      )}
+      {notificationsResponse.message && (
+        <NotificationBar
+          message={notificationsResponse.message}
+          type={notificationsResponse.type}
+          ref={notificationBarRef}
         />
       )}
     </styled.container>

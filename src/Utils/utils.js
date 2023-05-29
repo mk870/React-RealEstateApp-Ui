@@ -1,4 +1,4 @@
-export const backendUrl = "http://localhost:8080";
+export const backendUrl = "http://localhost:8080/";
 
 export const passwordValidator = (
   setIsPasswordValidationError,
@@ -55,7 +55,14 @@ export const nullNumberValueChecker = (value) => {
 export const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
+
 export const realtorKey = process.env.REACT_APP_RAPID_API_KEY;
+export const firebaseKey = process.env.REACT_APP_FIREBASE_API_KEY;
+export const authDomain = process.env.REACT_APP_AUTH_DOMAIN;
+export const projectId = process.env.REACT_APP_PROJECT_ID;
+export const storageBucket = process.env.REACT_APP_STORAGE_BUCKET;
+export const messagingSenderId = process.env.REACT_APP_MESSAGING_SENDER_ID;
+export const appId = process.env.REACT_APP_ID;
 
 export const dateConverter = (date) => {
   const year = date.getFullYear().toString();
@@ -63,3 +70,17 @@ export const dateConverter = (date) => {
   const day = date.getDate().toString();
   return `${month}/${day}/${year}`;
 };
+
+export const userDataNullChecker = (value)=>{
+  if(!value || value ==="null") return null
+  else return value
+}
+
+export const numberToString = (value)=>{
+  if(typeof value === "number") return value.toString();
+  else return value
+}
+export const stringToNumber = (value)=>{
+  if(typeof value === "string") return Number(value);
+  else return value
+}

@@ -1,30 +1,29 @@
-import { realtorKey } from 'Utils/utils'
-import axios from 'axios'
-import React, { useEffect } from 'react'
+import React from "react";
+
+import { Page, PageInnerContainer } from "Css/PageStyles";
+import HttpError from "HttpServices/Error/HttpError";
+import useBackendQuery from "HttpServices/Hooks/Backend/useBackendQuery";
+import CardGrid from "components/CardGrid/CardGrid";
+import GridSkeleton from "components/SkeletonLoaders/Grid/GridSkeleton";
 
 const AgentsWatchlist = () => {
-  useEffect(()=>{
-    const options =  {
-      method: 'GET',
-      url: 'https://us-real-estate.p.rapidapi.com/for-sale',
-      params: {offset: '0', limit: '42', state_code: 'LA', city: 'Los Angeles', sort: 'newest'},
-      headers: {
-        'X-RapidAPI-Key': realtorKey,
-        'X-RapidAPI-Host': 'us-real-estate.p.rapidapi.com'
-      }
-    };
-    axios
-    .request(options)
-    .then((data) => {
-      console.log("data",data.data.data.results);
-    })
-    .catch((e) => {
-      console.log(e.message);
-    });
-  },[])
+  const { data, isLoading, error } = useBackendQuery({ url: "agents" });
   return (
-    <div>MyAgentsList</div>
-  )
-}
+    <Page>
+      <PageInnerContainer>
+        {error && <HttpError message={error} size={"large"} />}
+        {isLoading && <GridSkeleton type={"agents"} />}
+        {data && (
+          <CardGrid
+            contentlist={data}
+            type={"agent"}
+            isFromLocalServer={true}
+            header={"Agent List"}
+          />
+        )}
+      </PageInnerContainer>
+    </Page>
+  );
+};
 
-export default AgentsWatchlist
+export default AgentsWatchlist;

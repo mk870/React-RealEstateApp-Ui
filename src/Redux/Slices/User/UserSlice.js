@@ -8,15 +8,14 @@ const generateRandomColor = () => {
   let randColor = randomNumber.padStart(6, 0);
   return `#${randColor.toUpperCase()}`;
 };
-
 const user = {
-  id: "123",
-  emailAddress: "mkhue47",
-  firstName: "mkhue",
-  userTheme: generateRandomColor(),
-  bio: "i love you",
+  id: "",
+  themeColor: generateRandomColor(),
+  emailAddress: "",
+  firstName: "",
+  bio: "",
   phone: "",
-  lastName: "ndlovue",
+  lastName: "",
   profilePhoto: "",
   country: "",
   state: "",

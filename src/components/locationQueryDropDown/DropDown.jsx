@@ -1,10 +1,10 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+
 import * as styled from "./DropDownStyles";
 import useFetchLocation from "HttpServices/Hooks/Location/useFetchLocation";
 import Spinner from "components/Spinner/Spinner";
-import { useContext } from "react";
 import { AppContext } from "Context/AppContext";
-import { useNavigate } from "react-router-dom";
 
 const DropDown = ({ input, setOpenSearchDropDown, setCity, setStateCode}) => {
   const { data, isLoading, error } = useFetchLocation({ inputQuery: input });

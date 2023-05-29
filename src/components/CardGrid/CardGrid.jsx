@@ -3,18 +3,19 @@ import * as styled from "components/CardGrid/CardGridStyles";
 import PropertyCard from "components/PropertyCard/PropertyCard";
 import AgentCard from "components/AgentCard/AgentCard";
 
-const CardGrid = ({ contentlist, type, isFromLocalServer }) => {
+const CardGrid = ({ contentlist, type, isFromLocalServer, header }) => {
   const getId = (content) => {
     if (type === "agent") {
-      if (isFromLocalServer) return content.Agent_id;
+      if (isFromLocalServer) return content.agent_id;
       else return content.advertiser_id;
     } else {
-      if (isFromLocalServer) return content.Property_id;
+      if (isFromLocalServer) return content.property_id;
       else return content.property_id;
     }
   };
   return (
     <styled.container>
+      {header && <styled.header>{header}</styled.header>}
       <styled.grid>
         {Array.isArray(contentlist) ? (
           contentlist.map((content) =>

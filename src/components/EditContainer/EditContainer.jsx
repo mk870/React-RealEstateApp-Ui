@@ -13,7 +13,7 @@ const EditContainer = ({ type }) => {
   const [openModal, setOpenModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const notificationBarRef = useRef(null);
-  const { accessToken } = useContext(AppContext);
+  const { accessToken, setUpdatedItem } = useContext(AppContext);
   const [updateResponse, setUpdateResponse] = useState({
     message: "",
     type: "",
@@ -41,6 +41,7 @@ const EditContainer = ({ type }) => {
           setHttpResponse={setUpdateResponse}
           httpResponse={updateResponse}
           accessToken={accessToken}
+          setUpdatedItem={setUpdatedItem}
         />
       )}
       {updateResponse.message && (
