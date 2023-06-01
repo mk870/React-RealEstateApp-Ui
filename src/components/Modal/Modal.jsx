@@ -3,6 +3,8 @@ import reactDom from "react-dom";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { AiOutlineClose } from "react-icons/ai";
+import { getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
+import { useNavigate } from "react-router-dom";
 
 import * as styled from "./ModalStyles";
 import Button from "components/Button/Button";
@@ -12,7 +14,8 @@ import Spinner from "components/Spinner/Spinner";
 import { updateResource } from "HttpServices/Update/updateData";
 import { dateConverter } from "Utils/utils";
 import AddressForm from "./AddressForm/AddressForm";
-import { useNavigate } from "react-router-dom";
+import ProfilePhoto from "./ProfilePhoto/ProfilePhoto";
+import { storage } from "Firebase/config";
 
 const Modal = ({
   setOpenModal,
@@ -123,14 +126,74 @@ const Modal = ({
           country: "",
         });
       }
+      if (type === "photo") {
+        if (!profilePhoto) return;
+        else {
+          if (!user.Email) return;
+          else {
+            const imageRef = ref(storage, `${user.Email}/${profilePhoto.name}`);
+            const imageListRef = ref(storage, `${user.Email}/`);
+            uploadBytes(imageRef, profilePhoto)
+              .then(() => {
+                listAll(imageListRef)
+                  .then((response) => {
+                    response.items.forEach((item) => {
+                      getDownloadURL(item)
+                        .then((url) => {
+                          if (url.includes(profilePhoto.name)) {
+                            let data = { Photo: url };
+                            updateResource(
+                              "user",
+                              data,
+                              accessToken,
+                              setIsLoading,
+                              setHttpResponse,
+                              httpResponse,
+                              setUpdatedItem
+                            );
+                          }
+                        })
+                        .catch((e) => {
+                          setHttpResponse({
+                            ...httpResponse,
+                            message: e.message,
+                            type: "failed",
+                          });
+                        });
+                    });
+                  })
+                  .catch((e) => {
+                    setHttpResponse({
+                      ...httpResponse,
+                      message: e.message,
+                      type: "failed",
+                    });
+                  });
+              })
+              .catch((e) => {
+                setHttpResponse({
+                  ...httpResponse,
+                  message: e.message,
+                  type: "failed",
+                });
+              });
+          }
+        }
+      }
     } else navigate("/login");
   };
+  const modalTitle = ()=>{
+    if (type === "personal details") return "Edit Personal Details"
+    if (type === "address details") return "Edit Address Details"
+    if (type === "password") return "Change Password"
+    else return "Edit Profile Photo"
+  }
   return reactDom.createPortal(
     <>
       <styled.overlay onClick={() => setOpenModal((value) => !value)} />
       <styled.container>
         <styled.header>
-          <styled.headerText>Edit Profile Photo</styled.headerText>
+          <styled.headerText>{modalTitle()}</styled.headerText>
           <styled.iconContainer onClick={() => setOpenModal((value) => !value)}>
             <AiOutlineClose size={iconSize} />
           </styled.iconContainer>
@@ -150,6 +213,9 @@ const Modal = ({
               addressDetails={addressDetails}
               setAddressDetails={setAddressDetails}
             />
+          )}
+          {type === "photo" && (
+            <ProfilePhoto setProfilePhoto={setProfilePhoto} />
           )}
         </styled.formContainer>
         <styled.btnContainer>

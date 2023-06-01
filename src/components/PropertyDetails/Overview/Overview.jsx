@@ -87,6 +87,7 @@ const Overview = ({ property, type }) => {
   };
   const getPropertyStatus = () => {
     if (type === "for_rent") return "Rental";
+    if (type === "sold") return "Sold";
     else return "Forsale";
   };
   const getPropertyBedrooms = () => {
@@ -221,7 +222,7 @@ const Overview = ({ property, type }) => {
     if (accessToken) {
       const propertyData = {
         Property_id: stringToNumber(property.property_id),
-        Status: property.status ? property.status : "---",
+        Status: getPropertyStatus(),
         City: postPropertyLocationCity(),
         Country: postCountry(),
         Name: getPropertyName(),
@@ -272,13 +273,15 @@ const Overview = ({ property, type }) => {
               </styled.amennity>
             ))}
           </styled.grid>
-          <Button
-            buttonText={isLoading ? <Spinner/> : "Add to watchlist"}
-            type={"click"}
-            color={"normal"}
-            size={screenSize > 600 ? "medium" : "small"}
-            onClickFunc={handlePost}
-          />
+          {type !== "sold" && (
+            <Button
+              buttonText={isLoading ? <Spinner /> : "Add to watchlist"}
+              type={"click"}
+              color={"normal"}
+              size={screenSize > 600 ? "medium" : "small"}
+              onClickFunc={handlePost}
+            />
+          )}
         </styled.overviewWrapper>
         <styled.imageContainer>
           <styled.imageTitle>Street view:</styled.imageTitle>

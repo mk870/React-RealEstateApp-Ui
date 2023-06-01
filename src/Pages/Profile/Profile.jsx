@@ -22,18 +22,21 @@ const Profile = () => {
     "Notifications",
     "Passwords and Security",
   ];
-  const { error,isLoading } = useQueryUserProfile();
+  const { error, isLoading } = useQueryUserProfile();
   return (
     <Page>
       <PageInnerContainer>
         {error && <HttpError message={error} size={"large"} />}
-        {isLoading && <ProfileSkeleton/>}
+        {isLoading && <ProfileSkeleton />}
         {!error && !isLoading && (
           <styled.container>
             <styled.header>My Profile</styled.header>
             <styled.overview>
-              <styled.profilePhoto src={empytyProfile} alt="profile-photo" />
-              <EditContainer />
+              <styled.profilePhoto
+                src={userProfile?.Photo ? userProfile.Photo : empytyProfile}
+                alt="profile-photo"
+              />
+              <EditContainer type={"photo"} />
             </styled.overview>
             <styled.row>
               {links.map((link) => (

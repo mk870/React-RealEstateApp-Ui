@@ -1,7 +1,6 @@
 import React from "react";
 import * as styled from "components/CardGrid/CardGridStyles";
-import PropertyCard from "components/PropertyCard/PropertyCard";
-import AgentCard from "components/AgentCard/AgentCard";
+import Pagination from "./Pagination/Pagination";
 
 const CardGrid = ({ contentlist, type, isFromLocalServer, header }) => {
   const getId = (content) => {
@@ -16,28 +15,16 @@ const CardGrid = ({ contentlist, type, isFromLocalServer, header }) => {
   return (
     <styled.container>
       {header && <styled.header>{header}</styled.header>}
-      <styled.grid>
-        {Array.isArray(contentlist) ? (
-          contentlist.map((content) =>
-            type === "agent" ? (
-              <AgentCard
-                key={getId(content)}
-                isFromLocalServer={isFromLocalServer}
-                agent={content}
-              />
-            ) : (
-              <PropertyCard
-                key={getId(content)}
-                property={content}
-                type={type}
-                isFromLocalServer={isFromLocalServer}
-              />
-            )
-          )
-        ) : (
-          <h1>No data</h1>
-        )}
-      </styled.grid>
+      {Array.isArray(contentlist) ? (
+        <Pagination
+          data={contentlist}
+          type={type}
+          isFromLocalServer={isFromLocalServer}
+          getDataIdsFunc={getId}
+        />
+      ) : (
+        <h1>No data</h1>
+      )}
     </styled.container>
   );
 };

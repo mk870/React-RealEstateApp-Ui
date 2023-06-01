@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import {
-  backgroundColor,
-  mainThemeColor,
   skeletonAnimation,
+  whiteColor,
 } from "../../Css/Variables";
 
 export const container = styled.div`
@@ -33,10 +32,10 @@ export const messageContainer = styled.div`
   flex-direction: row;
   width: 60%;
   height: 120px;
-  border-radius: 5px;
-  background-color: ${backgroundColor};
+  border-radius: 8px;
+  background-color: green;
   .success{
-   color: ${mainThemeColor};
+    color: ${whiteColor};
   }
   @media (max-width: 600px) {
     width: 80%;
@@ -45,5 +44,5 @@ export const messageContainer = styled.div`
 export const Text = styled.p`
   margin: 0 0 0 5px;
   font-size: 15px;
-  color: aliceblue;
+  color: ${whiteColor};
 `;

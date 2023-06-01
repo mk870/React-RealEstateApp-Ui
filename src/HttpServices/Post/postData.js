@@ -10,7 +10,6 @@ export const postResource = (
   postResponse,
   setPostedItem
 ) => {
-  console.log("data",data)
   axios
     .post(backendUrl + url, data, {
       headers: {
@@ -55,7 +54,6 @@ export const loginRequest = (
   axios
     .post(backendUrl + "login", data)
     .then((res) => {
-      console.log(res.data);
       setAccessToken(res.data.accessToken);
       setIsLoading(false);
       setPostResponse({
@@ -91,7 +89,6 @@ export const signupRequest = (
   axios
     .post(backendUrl + "user", data)
     .then((res) => {
-      console.log(res.data);
       setIsLoading(false);
       setPostResponse({
         ...postResponse,

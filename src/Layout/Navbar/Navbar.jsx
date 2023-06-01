@@ -151,7 +151,7 @@ const Navbar = ({ mobileMenu }) => {
             size={screenSize > 550 ? 28 : 22}
             className="notifications-icon"
           />
-          {accessToken && notifications.length > 1 && (
+          {accessToken && notifications.length >= 1 && (
             <styled.notificationsCount>
               <span className="count">{notifications.length}</span>
             </styled.notificationsCount>

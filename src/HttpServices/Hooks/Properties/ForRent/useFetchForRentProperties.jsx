@@ -81,11 +81,9 @@ const useFetchForRentProperties = ({
         .request(options)
         .then((data) => {
           setData(data.data.data.results);
-          console.log(data.data.data.results);
           setIsLoading(false);
         })
         .catch((e) => {
-          console.log(e.message);
           setError(e.message);
           setIsLoading(false);
         });

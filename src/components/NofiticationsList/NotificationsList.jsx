@@ -1,11 +1,8 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
-import {
-  MdDeleteForever,
-  MdMapsHomeWork,
-  MdSecurity,
-} from "react-icons/md";
+import { MdDeleteForever, MdMapsHomeWork, MdSecurity } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import { useSelector } from "react-redux";
+import { BsFillPersonFill } from "react-icons/bs";
 
 import { deleteResource } from "HttpServices/Delete/deleteResource";
 import Spinner from "components/Spinner/Spinner";
@@ -13,20 +10,20 @@ import NotificationBar from "components/Notifications/NotificationBar";
 import { AppContext } from "Context/AppContext";
 import * as styled from "./NotificationsListStyles";
 import { redColor } from "Css/Variables";
-import { BsFillPersonFill } from "react-icons/bs";
 
 const NotificationsList = ({ notifications, type }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { accessToken, setDeletedItemId } = useContext(AppContext);
   const notificationBarRef = useRef(null);
+  const [clickedNotificationItem, setClickedNotificationItem] = useState(null);
   const [deleteResponse, setDeleteResponse] = useState({
     message: "",
     type: "",
   });
   const screenSize = useSelector((state) => state.screenSize.value);
-  const handleDelete = (notification, e) => {
+  const handleDelete = (notification, index) => {
+    setClickedNotificationItem(index);
     setIsLoading(true);
-    console.log(e);
     deleteResource(
       "notification",
       notification.id,
@@ -42,6 +39,7 @@ const NotificationsList = ({ notifications, type }) => {
       notificationBarRef.current.showPopup();
     }
   }, [notificationBarRef, deleteResponse]);
+
   return (
     <styled.container>
       {!accessToken ? (
@@ -66,7 +64,7 @@ const NotificationsList = ({ notifications, type }) => {
                 color="grey"
               />
             ) : notification.type === "Profile" ? (
-              <CgProfile size={screenSize > 550 ? 35 : 27} color= "black" />
+              <CgProfile size={screenSize > 550 ? 35 : 27} color="black" />
             ) : notification.type === "Password" ? (
               <MdSecurity size={screenSize > 550 ? 35 : 27} color="purple" />
             ) : (
@@ -78,10 +76,18 @@ const NotificationsList = ({ notifications, type }) => {
               </styled.header>
               <styled.text type={type}>{notification.date}</styled.text>
               <styled.markAsRead
-                onClick={(e) => handleDelete(notification, e)}
+                onClick={() => handleDelete(notification, index)}
                 type={type}
               >
-                {isLoading ? <Spinner /> : "Mark as Read"}
+                {isLoading ? (
+                  clickedNotificationItem === index ? (
+                    <Spinner />
+                  ) : (
+                    "Mark as Read"
+                  )
+                ) : (
+                  "Mark as Read"
+                )}
               </styled.markAsRead>
             </styled.textContainer>
           </styled.listItem>

@@ -21,7 +21,7 @@ function App() {
   const [deletedItemId, setDeletedItemId] = useState(null);
   const [postedItem, setPostedItem] = useState(null);
   const [updatedItem, setUpdatedItem] = useState(null);
-  useDecodeUser({accessToken})
+  useDecodeUser({ accessToken });
   const appRoutes = RoutesList(accessToken);
   return (
     <AppContext.Provider
@@ -35,7 +35,7 @@ function App() {
         postedItem,
         setPostedItem,
         updatedItem,
-        setUpdatedItem
+        setUpdatedItem,
       }}
     >
       <BrowserRouter>

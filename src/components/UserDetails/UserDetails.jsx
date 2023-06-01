@@ -6,12 +6,13 @@ import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { AppContext } from "../../Context/AppContext";
 import { secondaryThemeColor } from "Css/Variables";
 import DropDown from "./ProfileDropDown/DropDown";
+import empytyProfile from "Assets/empty-profile.jpg";
 import * as styled from "./UserDetailsStyles";
-import { userDataNullChecker } from "Utils/utils";
 
 const UserDetails = () => {
   const [openDropDown, setOpenDropDown] = useState(false);
-  const user = useSelector((state) => state.user.value);
+  const {themeColor} = useSelector((state) => state.user.value);
+  const profile = useSelector((state) => state.userProfile.value);
   const screenSize = useSelector((state) => state.screenSize.value);
   const navigate = useNavigate();
   const { accessToken } = useContext(AppContext);
@@ -28,15 +29,17 @@ const UserDetails = () => {
       )}
       {accessToken && (
         <styled.userInfoContainer>
-          {!userDataNullChecker(user.profilePhoto) && (
-            <styled.initials backGround={user.themeColor}>
-              {getUserInitial(user.firstName)}
+          {!profile?.Photo ? (
+            <styled.initials backGround={themeColor}>
+              {getUserInitial(profile.FirstName)}
             </styled.initials>
+          ) : (
+            <styled.profilePhoto
+              src={profile.Photo ? profile.Photo : empytyProfile}
+              alt="pic"
+            />
           )}
-          {userDataNullChecker(user.profilePhoto) && (
-            <styled.profilePhoto src={user.profilePhoto} alt="pic" />
-          )}
-          {screenSize > 600 && <styled.name>{user.firstName}</styled.name>}
+          {screenSize > 600 && <styled.name>{profile.FirstName}</styled.name>}
           {openDropDown ? (
             <BsChevronDown
               size={iconSize}

@@ -18,12 +18,4 @@ export const header = styled.p`
     font-size: 14px;
   }
 `;
-export const grid = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: start;
-  flex-wrap: wrap;
-  gap: 15px;
-  box-sizing: border-box;
-  width: 100%;
-`;
+

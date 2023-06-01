@@ -48,15 +48,10 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
     if (isFromLocalServer) return property.property_id;
     else return property.property_id;
   };
-  const getPropertyStatus = () => {
-    if (isFromLocalServer) return property.status;
-    else return property.status;
-  };
   const getPropertyType = () => {
-    if (getPropertyStatus() === "for_sale") return "Forsale";
-    if (getPropertyStatus() === "off_market") return "Offmarket";
-    if (getPropertyStatus() === "sold") return "Sold";
-    else return "Rental";
+    if (type === "sold") return "Sold";
+    if (type === "rental") return "Rental";
+    else return "Forsale"
   };
   const getPropertyName = () => {
     if (isFromLocalServer) {
@@ -68,8 +63,9 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
           return property.description.type.replace("_", " ");
         else return emptyPropertyName;
       } else {
-        if (property?.branding[0]?.name)
-          return shortenString(property.branding[0].name, 35);
+        if (property?.branding)
+          if(property.branding[0]?.name) return shortenString(property.branding[0].name, 35);
+          else return emptyPropertyName;
         else return emptyPropertyName;
       }
     }
@@ -79,6 +75,7 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
     else {
       if (type === "rental") {
         if (property?.list_price_max) return property.list_price_max;
+        else if (property?.list_price) return property.list_price;
         else return "---";
       } else if (type === "rental recommendations") {
         if (property?.list_price) return `${property.list_price}`;
@@ -124,7 +121,9 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
     if (type === "rental") {
       if (property?.list_price_max)
         return numberToString(property.list_price_max);
-      else return "---";
+      else if(property?.list_price){
+        return numberToString(property.list_price);
+      }else return "---";
     } else if (type === "sold") {
       if (property?.description?.sold_price) {
         return millify(property.description.sold_price);
@@ -250,7 +249,7 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
         Country: postCountry(),
         County: postPropertyCounty(),
         Property_id: stringToNumber(property.property_id),
-        Status: property.status ? property.status : "---",
+        Status: getPropertyType(),
         Size: postPropertySize(),
         Bedrooms: postPropertyBedrooms(),
         Bathrooms: postPropertyBathrooms(),
@@ -298,12 +297,12 @@ const PropertyCard = ({ property, type, isFromLocalServer }) => {
   return (
     <styled.container onClick={navigateToProperyDetails}>
       <styled.propertyType>
-        <styled.propertyTypeText>{getPropertyType()}</styled.propertyTypeText>
+        <styled.propertyTypeText>{isFromLocalServer?property.status: getPropertyType()}</styled.propertyTypeText>
       </styled.propertyType>
       <styled.poster src={getPropertyPhoto()} />
       <styled.row>
         <styled.name>{getPropertyName()}</styled.name>
-        {type === "rental" || type === "rental recommendations" ? (
+        {type === "rental" || type === "rental recommendations"||property.status === "Rental"  ? (
           <styled.rent>
             ${getPropertyPrice()}
             <span className="span">/month</span>

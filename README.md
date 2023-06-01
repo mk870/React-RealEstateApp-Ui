@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# R-Estates (React Frontend) <img src="https://i.ibb.co/G93v3nL/logo5.jpg" alt="logo5" border="0" align="center" width="50" border-radius="15">
+<img src="https://i.ibb.co/NY4FkHM/moviehome.png" alt="moviehome" border="0">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Summary 
+* This app helps you search for rental properties, properties forsale, properties already sold and real estate agents in any city and state in the US.
+* The app also allows you to add and delete properties and agents in your own account via the [***Golang Gin Server***](https://github.com/mk870/realEstateApp-server). 
+* Another feature is that it allows you to get property recommendations based on your search results.
+* Additionally there is a dashboard on the app that shows you the revenues of the company property sales.It has all types of graphs and visuals to make the data analytics clear and concise.
+* Finally, it shows you the tax history, neighborhood, pictures and map of each property.
+### Project Steps :
+* The app has 12 pages created using react-router (homepage, Rental property watchlist, Forsale property watchlist, Agents watchlist, Sold Properties, dashboard,Agent,Property,Verification,Profile, login and signup page)
+* This app consumes 4 apis, a Golang Gin backend Api with a postgreSQL database, Firebase for user profile photo storage, Realtor Api for properties and agents and MapBox api for property location.
+* Finally, styled-components was used to style the entire application.
 
-## Available Scripts
+### **Resources Used**
+***
+**React Version :** 17.0.2  
 
-In the project directory, you can run:
+**Language Used :** Javascript
 
-### `npm start`
+**Dependencies**:  React-router, React-icons, styled-components, react-context, react-mapbox, react-loader-spinner, react-datepicker, react-region-selector, react-apex-charts, redux and axios.  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=flat&logo=javascript&logoColor=%23F7DF1E) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=flat&logo=react&logoColor=%2361DAFB)	![React Router](https://img.shields.io/badge/React_Router-CA4245?style=flat&logo=react-router&logoColor=white) ![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=flat&logo=styled-components&logoColor=white) ![JWT](https://img.shields.io/badge/JWT-black?style=flat&logo=JSON%20web%20tokens) ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=flat&logo=redux&logoColor=white) ![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=flat&logo=Firebase&logoColor=white)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+**For Web Framework Requirements**: npm install
 
-### `npm test`
+**APIs**: realtor, mapbox ,firebase  and [***Golang Gin Server***](https://github.com/mk870/realEstateApp-server) 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### **Properties** 
+* Axios is used as the package to fetch the data, utilizing the axios cancelToken property to stop network calls when necessary as the client types in the input field from the Realtor API.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<img src="https://i.ibb.co/9gz9zcN/Movie-Plus-1.png" alt="Movie-Plus-1" border="0">
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### **Dashboard**  
+* The dashboard displays Revenue data using graphs and charts of different kinds e.g pie charts, line chart and bar graphs.
 
-### `npm run eject`
+### **Agents and Property Watchlists**  
+* The client's agents and properties are created, deleted and saved via a restful [***Golang Gin Server***](https://github.com/mk870/MoviePlusServer) to a postgreSQL database.
+* The client can access, delete his/her agents and properties on  his/her account.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### **Productionization**
+Deployed the app to Vercel.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Live Implemantation:** [TubeMax](https://tube-max.vercel.app/)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

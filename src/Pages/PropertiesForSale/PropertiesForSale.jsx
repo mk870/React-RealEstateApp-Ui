@@ -1,3 +1,5 @@
+import { useContext, useState } from "react";
+
 import { AppContext } from "Context/AppContext";
 import { Page, PageInnerContainer } from "Css/PageStyles";
 import HttpError from "HttpServices/Error/HttpError";
@@ -5,7 +7,6 @@ import useFetchForSaleProperties from "HttpServices/Hooks/Properties/ForSale/use
 import CardGrid from "components/CardGrid/CardGrid";
 import Filter from "components/PropertiesFilter/Filter";
 import GridSkeleton from "components/SkeletonLoaders/Grid/GridSkeleton";
-import { useContext, useState } from "react";
 
 const PropertiesForSale = () => {
   const { searchLocation } = useContext(AppContext);
