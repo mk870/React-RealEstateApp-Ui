@@ -1,11 +1,11 @@
 import React from "react";
 import { useContext } from "react";
 import { CgProfile } from "react-icons/cg";
-import { AiOutlineSetting } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useRef } from "react";
+import { RxDashboard } from "react-icons/rx";
 
 import * as styled from "components/UserDetails/ProfileDropDown/DropDownStyles";
 import { AppContext } from "Context/AppContext";
@@ -33,9 +33,9 @@ const DropDown = ({ setOpenDropDown }) => {
             <CgProfile size={iconSize} color={secondaryThemeColor} />
             <styled.text>Edit Profile</styled.text>
           </styled.listItem>
-          <styled.listItem onClick={() => navigate("/profile")}>
-            <AiOutlineSetting size={iconSize} color={secondaryThemeColor} />
-            <styled.text>Settings</styled.text>
+          <styled.listItem onClick={() => navigate("/dashboard")}>
+            <RxDashboard size={iconSize} color={secondaryThemeColor} />
+            <styled.text>Dashboard</styled.text>
           </styled.listItem>
           <styled.listItem onClick={() => setAccessToken(null)}>
             <BiLogOut size={iconSize} color={secondaryThemeColor} />

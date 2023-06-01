@@ -26,7 +26,6 @@ const useFetchNotifications = ({
         })
         .then((data) => {
           setIsLoading(false);
-          console.log(data.data);
           dispatch(addNotifications(data.data));
         })
         .catch((e) => {

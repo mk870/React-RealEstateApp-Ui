@@ -7,7 +7,7 @@ import CardGrid from 'components/CardGrid/CardGrid';
 import GridSkeleton from 'components/SkeletonLoaders/Grid/GridSkeleton';
 
 const PropertiesForsaleWatchlist = () => {
-  const { data, isLoading, error } = useBackendQuery({ url: "properties/for_sale" });
+  const { data, isLoading, error } = useBackendQuery({ url: "properties/Forsale" });
   return (
     <Page>
       <PageInnerContainer>

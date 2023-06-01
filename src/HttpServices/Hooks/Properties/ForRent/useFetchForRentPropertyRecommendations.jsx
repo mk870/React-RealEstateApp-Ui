@@ -23,11 +23,9 @@ const useFetchForRentPropertyRecommendations = ({ postalCode, propertyId }) => {
       .request(options)
       .then((data) => {
         setData(data.data.data);
-        console.log(data.data.data);
         setIsLoading(false);
       })
       .catch((e) => {
-        console.log(e.message);
         setError(e.message);
         setIsLoading(false);
       });

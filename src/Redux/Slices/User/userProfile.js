@@ -1,13 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const user = {
+  City: "",
+  Country: "",
+  State: "",
+  StreetName: "",
+  StreetNumber: "",
+  FirstName: "",
+  LastName: "",
+  Bio: "",
+  Phone: "",
+  DateOfBirth: "",
+  Photo: "",
+};
+
 export const userProfileSlice = createSlice({
   name: "userProfile",
   initialState: {
-    value: null,
+    value: user,
   },
   reducers: {
     addUserProfile: (state, action) => {
-      state.value = action.payload
+      state.value = action.payload;
     },
   },
 });

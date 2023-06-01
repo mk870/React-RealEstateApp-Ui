@@ -9,7 +9,6 @@ import SelectGroup from "components/SelectGroup/SelectGroup";
 import InputGroup from "components/InputGroup/InputGroup";
 import Button from "components/Button/Button";
 import { AppContext } from "Context/AppContext";
-//property for sale rental property agents
 
 const Filter = ({ header, type, setApiParams, apiParams }) => {
   const [openFilters, setOpenFilters] = useState(false);
@@ -43,7 +42,7 @@ const Filter = ({ header, type, setApiParams, apiParams }) => {
           ...highlightRequiredFields,
           stateCode: true,
         });
-        return searchLocation.stateCode;
+        return "AL";
       } else return searchLocation.stateCode;
     } else {
       setHighlightRequiredFields({
@@ -193,11 +192,11 @@ const Filter = ({ header, type, setApiParams, apiParams }) => {
         <styled.toggler>
           {openFilters ? (
             <styled.toggleText onClick={() => setOpenFilters(!openFilters)}>
-              hide filters
+              less filters
             </styled.toggleText>
           ) : (
             <styled.toggleText onClick={() => setOpenFilters(!openFilters)}>
-              show more filters
+              more filters
             </styled.toggleText>
           )}
         </styled.toggler>

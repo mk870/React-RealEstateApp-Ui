@@ -47,12 +47,13 @@ export const initials = styled.p`
   }
 `;
 export const profilePhoto = styled.img`
-  height: 25px;
-  width: 25px;
+  height: 35px;
+  width: 35px;
   border-radius: 100%;
+  margin-right: 2px;
   @media (max-width: 550px) {
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 30px;
   }
 `;
 export const name = styled.p`
