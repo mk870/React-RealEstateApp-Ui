@@ -1,4 +1,4 @@
-export const backendUrl = "http://localhost:8080/";
+export const backendUrl = "https://r-estates-server.onrender.com/";
 
 export const passwordValidator = (
   setIsPasswordValidationError,

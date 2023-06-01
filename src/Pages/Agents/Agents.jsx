@@ -1,11 +1,11 @@
+import React, { useState } from "react";
+
 import { Page, PageInnerContainer } from "Css/PageStyles";
 import HttpError from "HttpServices/Error/HttpError";
 import useFetchAgentSearch from "HttpServices/Hooks/Agents/useFetchAgentSearch";
 import CardGrid from "components/CardGrid/CardGrid";
 import Filter from "components/PropertiesFilter/Filter";
 import GridSkeleton from "components/SkeletonLoaders/Grid/GridSkeleton";
-import React from "react";
-import { useState } from "react";
 
 const Agents = () => {
   const [inputValues, setInputValues] = useState({
