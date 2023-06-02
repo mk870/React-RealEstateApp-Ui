@@ -11,7 +11,7 @@ import { mainThemeColor } from "Css/Variables";
 import * as styled from "./MapStyles";
 import markerSvg from "Assets/marker.svg";
 
-
+//--openssl-legacy-provider
 const MapDisplay = ({ coordinates, property }) => {
   const { lon, lat } = coordinates;
   const [viewState, setViewState] = useState({

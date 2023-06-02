@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { HiOutlineDotsVertical } from "react-icons/hi";
 
 import * as styled from "./TopAgentsStyles";
 import { agentsList } from "./Data/AgentsList";
-import { HiOutlineDotsVertical } from "react-icons/hi";
 
 const TopAgents = () => {
   const [topAgents] = useState(agentsList);
@@ -19,7 +19,7 @@ const TopAgents = () => {
       {topAgents.map((agent) => (
         <styled.agentRow
           key={agent.id}
-          onClick={() => navigate(`/agent/${agent.id}`)}
+          onClick={() => navigate(`/agent/${agent.advertiser_id}`)}
         >
           <styled.agentInfo>
             <styled.agentImage src={agent.photo} alt="agent" />
