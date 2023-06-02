@@ -11,9 +11,9 @@ import { mainThemeColor } from "Css/Variables";
 import * as styled from "./MapStyles";
 import markerSvg from "Assets/marker.svg";
 
-import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
-import MapboxWorker from 'mapbox-gl/dist/mapbox-gl-csp-worker';
-mapboxgl.workerClass = MapboxWorker;
+// @ts-ignore
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import mapboxgl from '!mapbox-gl';
 
 
 const MapDisplay = ({ coordinates, property }) => {
