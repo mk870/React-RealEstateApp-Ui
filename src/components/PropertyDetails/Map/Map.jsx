@@ -11,10 +11,6 @@ import { mainThemeColor } from "Css/Variables";
 import * as styled from "./MapStyles";
 import markerSvg from "Assets/marker.svg";
 
-// @ts-ignore
-// eslint-disable-next-line import/no-webpack-loader-syntax
-import mapboxgl from '!mapbox-gl';
-
 
 const MapDisplay = ({ coordinates, property }) => {
   const { lon, lat } = coordinates;
