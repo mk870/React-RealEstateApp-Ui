@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+
 import * as styled from "./PropertyDetailsStyles";
 import ImageScroller from "components/ImageScroller/ImageScroller";
 import MapDisplay from "components/PropertyDetails/Map/Map";
 import OtherFeatures from "./OtherFeatures/OtherFeatures";
-import { useState } from "react";
 import Overview from "components/PropertyDetails/Overview/Overview";
 import Schools from "./Schools/Schools";
 import TaxHistory from "./TaxHistory/TaxHistory";

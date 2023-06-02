@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import * as styled from "./ImageScrollerStyles";
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
+
 import emptyPropertyImage from "Assets/nullPropertyPoster.jpg";
-import { useState } from "react";
-import { useEffect } from "react";
 import { secondaryThemeColor } from "Css/Variables";
 
 const ImageScroller = ({ images }) => {

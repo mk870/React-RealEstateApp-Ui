@@ -1,14 +1,20 @@
 import React, { useState } from "react";
-import * as styled from "./MapStyles";
-import Map, { Marker, NavigationControl } from "react-map-gl";
-import "mapbox-gl/dist/mapbox-gl.css";
-import markerSvg from "Assets/marker.svg";
 import { GiPostStamp, GiRoad, GiTexas } from "react-icons/gi";
 import { useSelector } from "react-redux";
-import { mainThemeColor } from "Css/Variables";
 import { AiOutlineNumber } from "react-icons/ai";
 import { FaCity, FaFlagUsa } from "react-icons/fa";
 import { MdOutlineLandscape } from "react-icons/md";
+import Map, { Marker, NavigationControl } from "react-map-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
+
+import { mainThemeColor } from "Css/Variables";
+import * as styled from "./MapStyles";
+import markerSvg from "Assets/marker.svg";
+
+import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
+import MapboxWorker from 'mapbox-gl/dist/mapbox-gl-csp-worker';
+mapboxgl.workerClass = MapboxWorker;
+
 
 const MapDisplay = ({ coordinates, property }) => {
   const { lon, lat } = coordinates;

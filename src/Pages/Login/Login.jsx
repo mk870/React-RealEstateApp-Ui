@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Button from "../../components/Button/Button";
@@ -14,7 +14,6 @@ import * as styled from "./LoginStyles";
 import Spinner from "../../components/Spinner/Spinner";
 import { loginRequest} from "../../HttpServices/Post/postData";
 import NotificationBar from "../../components/Notifications/NotificationBar";
-import { useContext } from "react";
 import { AppContext } from "Context/AppContext";
 
 const Login = () => {

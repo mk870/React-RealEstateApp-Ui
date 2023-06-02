@@ -1,9 +1,10 @@
 import React from "react";
-import * as styled from "./LatestSalesStyles";
-import { latestsalesList } from "./Data/latestSalesList";
-import millify from "millify";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import millify from "millify";
+
+import * as styled from "./LatestSalesStyles";
+import { latestsalesList } from "./Data/latestSalesList";
 import { addPropertyCoordinates } from "Redux/Slices/Property/PropertyCoordinatesSlice";
 
 const LatestSales = () => {
@@ -18,7 +19,7 @@ const LatestSales = () => {
       <styled.header>
         <styled.title>Latest Property Sales</styled.title>
         <styled.viewAll onClick={() => navigate("/properties-sold")}>
-          View All
+          View More
         </styled.viewAll>
       </styled.header>
       {latestsalesList.map((item) => (

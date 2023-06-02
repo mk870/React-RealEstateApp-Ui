@@ -10,11 +10,13 @@ export const LeftArrowContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin: 10px;
+  cursor: pointer;
 `;
 export const RightArrowContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin: 10px;
+  cursor: pointer;
 `;
 
 const opacityAnimation = keyframes`

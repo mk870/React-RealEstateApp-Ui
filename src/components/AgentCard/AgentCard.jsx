@@ -66,7 +66,6 @@ const AgentCard = ({ agent, isFromLocalServer }) => {
   const handlePost = (agent, e) => {
     e.stopPropagation();
     setIsLoading(true);
-    console.log(agent);
     if (accessToken) {
       let data = {
         Name: postName(),
@@ -106,7 +105,7 @@ const AgentCard = ({ agent, isFromLocalServer }) => {
   }, [notificationBarRef, deleteResponse]);
   return (
     <styled.container onClick={onNavigate}>
-      <styled.poster src={getPhoto()} alt="agent-photo" />
+      <styled.poster src={getPhoto()} alt="agent" />
       <styled.row>
         <styled.name>{getName()}</styled.name>
       </styled.row>

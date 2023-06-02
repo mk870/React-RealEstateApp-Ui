@@ -17,7 +17,7 @@ export const name = styled.p`
   font-size: 14px;
   font-weight: bold;
   text-align: center;
-  color: ${secondaryThemeColor};
+  color: black;
   @media (max-width: 600px) {
     font-size: 12px;
   }

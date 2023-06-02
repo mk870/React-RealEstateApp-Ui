@@ -10,7 +10,7 @@ const Footer = () => {
   const links = [
     {
       name: "Properties For Sale",
-      path: "/forsale-properties",
+      path: "/properties-forsale",
     },
     {
       name: "Properties For Rent",

@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+
 import * as styled from "./TopAgentsStyles";
 import { agentsList } from "./Data/AgentsList";
 import { HiOutlineDotsVertical } from "react-icons/hi";
@@ -12,7 +13,7 @@ const TopAgents = () => {
       <styled.header>
         <styled.title>Top Agents</styled.title>
         <styled.viewAll onClick={() => navigate("/agents")}>
-          View All
+          View More
         </styled.viewAll>
       </styled.header>
       {topAgents.map((agent) => (

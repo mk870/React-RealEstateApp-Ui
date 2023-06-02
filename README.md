@@ -1,11 +1,11 @@
-# R-Estates (React Frontend) <img src="https://i.ibb.co/G93v3nL/logo5.jpg" alt="logo5" border="0" align="center" width="50" border-radius="15">
-<img src="https://i.ibb.co/NY4FkHM/moviehome.png" alt="moviehome" border="0">
+# R-Estates (React Frontend) <img src="https://i.ibb.co/rmLT8kk/logo.png" alt="logo5" border="0" align="center" width="60" border-radius="15">
+<img src="https://i.ibb.co/ph3VhnM/home.png" alt="moviehome" border="0">
 
 ## Project Summary 
 * This app helps you search for rental properties, properties forsale, properties already sold and real estate agents in any city and state in the US.
 * The app also allows you to add and delete properties and agents in your own account via the [***Golang Gin Server***](https://github.com/mk870/realEstateApp-server). 
 * Another feature is that it allows you to get property recommendations based on your search results.
-* Additionally there is a dashboard on the app that shows you the revenues of the company property sales.It has all types of graphs and visuals to make the data analytics clear and concise.
+* Additionally there is a dashboard on the app that shows you the revenues of the company's property sales.It has all types of graphs and visuals to make the data analytics clear and concise.
 * Finally, it shows you the tax history, neighborhood, pictures and map of each property.
 ### Project Steps :
 * The app has 12 pages created using react-router (homepage, Rental property watchlist, Forsale property watchlist, Agents watchlist, Sold Properties, dashboard,Agent,Property,Verification,Profile, login and signup page)
@@ -26,18 +26,20 @@
 
 **APIs**: realtor, mapbox ,firebase  and [***Golang Gin Server***](https://github.com/mk870/realEstateApp-server) 
 
-
+<img src="https://i.ibb.co/VY2zM5m/properties.png" alt="properties" border="0">
 
 ### **Properties** 
 * Axios is used as the package to fetch the data, utilizing the axios cancelToken property to stop network calls when necessary as the client types in the input field from the Realtor API.
 
-<img src="https://i.ibb.co/9gz9zcN/Movie-Plus-1.png" alt="Movie-Plus-1" border="0">
+<img src="https://i.ibb.co/N7sdmXc/dashboard.png" alt="dashboard" border="0">
 
 ### **Dashboard**  
 * The dashboard displays Revenue data using graphs and charts of different kinds e.g pie charts, line chart and bar graphs.
 
+<img src="https://i.ibb.co/w6hYy1N/property.png" alt="dashboard" border="0">
+
 ### **Agents and Property Watchlists**  
-* The client's agents and properties are created, deleted and saved via a restful [***Golang Gin Server***](https://github.com/mk870/MoviePlusServer) to a postgreSQL database.
+* The client's agents and properties are created, deleted and saved via a restful [***Golang Gin Server***](https://github.com/mk870/realEstateApp-server) to a postgreSQL database.
 * The client can access, delete his/her agents and properties on  his/her account.
 
 ### **Productionization**
