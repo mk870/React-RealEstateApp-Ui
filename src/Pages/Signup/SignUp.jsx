@@ -255,7 +255,7 @@ const SignUp = () => {
               ))}
             </styled.validationErrorWrapper>
           )}
-          <GoogleOAUTH2 type={"signup"}/>
+          <GoogleOAUTH2 type={"signup"} setIsLoading={setIsLoading} />
           <styled.SignupText>
             you already have an account?{" "}
             <styled.SignupTextSpan onClick={() => navigate("/login")}>

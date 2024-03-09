@@ -132,7 +132,7 @@ const Login = () => {
               ))}
             </styled.validationErrorWrapper>
           )}
-          <GoogleOAUTH2 type={"login"}/>
+          <GoogleOAUTH2 type={"login"} setIsLoading={setIsLoading}/>
           <styled.LoginText>
             you don't have an account?{" "}
             <styled.LoginTextSpan onClick={() => navigate("/signup")}>
