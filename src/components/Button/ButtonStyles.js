@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { mainThemeColor, redColor, whiteColor } from "../../Css/Variables";
+import { lightMainThemeColor, mainThemeColor, redColor, whiteColor } from "../../Css/Variables";
 
 export const ButtonField = styled.button`
   background-color: ${(props) =>
@@ -23,7 +23,7 @@ export const ButtonField = styled.button`
   &:hover {
     background-color: ${(props) =>
       props.btnColor === "normal"
-        ? "rgba(71,91,232,0.8)"
+        ? lightMainThemeColor
         : "rgba(255, 39, 0,0.8)"};
     cursor: pointer;
   }

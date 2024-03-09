@@ -21,6 +21,10 @@ const DropDown = ({ setOpenDropDown }) => {
       setOpenDropDown((value) => !value);
     }
   };
+  const handleLogOut = () => {
+    setAccessToken(null)
+    navigate("/login")
+  }
   useEffect(() => {
     document.addEventListener("click", handleClickOutside, true);
     return document.removeEventListener("click", handleClickOutside, false);
@@ -37,7 +41,7 @@ const DropDown = ({ setOpenDropDown }) => {
             <RxDashboard size={iconSize} color={secondaryThemeColor} />
             <styled.text>Dashboard</styled.text>
           </styled.listItem>
-          <styled.listItem onClick={() => setAccessToken(null)}>
+          <styled.listItem onClick={handleLogOut}>
             <BiLogOut size={iconSize} color={secondaryThemeColor} />
             <styled.text>Logout</styled.text>
           </styled.listItem>

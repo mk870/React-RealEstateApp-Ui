@@ -13,6 +13,7 @@ import * as styled from "./SignUpStyles";
 import Spinner from "../../components/Spinner/Spinner";
 import { signupRequest } from "../../HttpServices/Post/postData";
 import NotificationBar from "../../components/Notifications/NotificationBar";
+import GoogleOAUTH2 from "components/GoogleOAUTH2/GoogleOAUTH2";
 
 const SignUp = () => {
   const [signUpData, setSignUpData] = useState({
@@ -80,12 +81,7 @@ const SignUp = () => {
           Email: signUpData.email,
           Password: signUpData.password,
         };
-        signupRequest(
-          userData,
-          setIsLoading,
-          setPostResponse,
-          postResponse
-        );
+        signupRequest(userData, setIsLoading, setPostResponse, postResponse);
         setSignUpData({
           ...signUpData,
           email: "",
@@ -153,12 +149,14 @@ const SignUp = () => {
   useEffect(() => {
     if (signUpData.password !== "") {
       passwordValidator(setIsPasswordValidationError, signUpData.password);
+    } else {
+      setIsPasswordValidationError(false);
     }
   }, [signUpData.password]);
   useEffect(() => {
     if (signUpData.email !== "") {
       emailValidator(setIsEmailValidationError, signUpData.email);
-    }
+    } else setIsEmailValidationError(false);
   }, [signUpData.email]);
   useEffect(() => {
     if (signUpData.firstName !== "") {
@@ -167,6 +165,8 @@ const SignUp = () => {
       } else {
         setIsFirstNameValidationError(false);
       }
+    } else {
+      setIsFirstNameValidationError(false);
     }
   }, [signUpData.firstName]);
   useEffect(() => {
@@ -176,7 +176,7 @@ const SignUp = () => {
       } else {
         setIsLastNameValidationError(false);
       }
-    }
+    } else setIsLastNameValidationError(false);
   }, [signUpData.lastName]);
   useEffect(() => {
     if (postResponse && notificationBarRef.current) {
@@ -255,6 +255,7 @@ const SignUp = () => {
               ))}
             </styled.validationErrorWrapper>
           )}
+          <GoogleOAUTH2 type={"signup"}/>
           <styled.SignupText>
             you already have an account?{" "}
             <styled.SignupTextSpan onClick={() => navigate("/login")}>

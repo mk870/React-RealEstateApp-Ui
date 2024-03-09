@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { mainThemeColor, redColor, shadow, whiteColor } from "../../Css/Variables";
+import { lightMainThemeColor, redColor, shadow, whiteColor } from "../../Css/Variables";
 
 export const LoginWrapper = styled.div`
   display: flex;
@@ -25,7 +25,7 @@ export const LoginFormWrapper = styled.div`
   justify-content: start;
   flex-direction: column;
   background-color: ${whiteColor};
-  width: 450px;
+  width: 400px;
   margin-top:30px;
   margin-bottom:50px;
   padding: 40px 20px;
@@ -72,12 +72,14 @@ export const validationErrorGuidelines = styled.span`
 `;
 export const LoginTextSpan = styled.span`
   font-size: 13px;
-  color: ${mainThemeColor};
+  color: ${lightMainThemeColor};
   text-decoration: underline;
+  font-weight: bold;
   &:hover {
     cursor: pointer;
   }
 `;
+
 export const LoginBtnContainer = styled.div`
   display: flex;
   align-items: center;

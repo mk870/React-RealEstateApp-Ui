@@ -2,11 +2,9 @@ import React from "react";
 import * as styled from "./TotalRevenueStyles";
 import { BsArrowUpCircleFill } from "react-icons/bs";
 import { mainThemeColor } from "Css/Variables";
-import BarChart from "components/Charts/BarChart/BarChart";
-import {
-  TotalRevenueOptions,
-  TotalRevenueSeries,
-} from "components/Charts/ChartsConfig";
+import { TotalRevenueOptions, TotalRevenueSeries } from "../Charts/ChartsConfig";
+import BarChart from "../Charts/BarChart/BarChart";
+import Counter from "../Counter/Counter";
 
 const TotalRevenue = () => {
   const barChartWidth = () => {
@@ -16,11 +14,11 @@ const TotalRevenue = () => {
     <styled.container>
       <styled.title>Total Revenue</styled.title>
       <styled.totalRevenueContainer>
-        <styled.total>$33 000 000</styled.total>
+        <styled.total>$<Counter amount={33}/> 000 000</styled.total>
         <styled.statistics>
           <BsArrowUpCircleFill fontSize={20} color={mainThemeColor} />
           <styled.statisticsInnerContainer>
-            <styled.statisticsText>10%</styled.statisticsText>
+            <styled.statisticsText><Counter amount={10} speed={10}/>%</styled.statisticsText>
             <styled.statisticsText>Than Last Month</styled.statisticsText>
           </styled.statisticsInnerContainer>
         </styled.statistics>
