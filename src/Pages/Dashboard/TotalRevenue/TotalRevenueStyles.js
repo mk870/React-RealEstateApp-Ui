@@ -1,4 +1,4 @@
-import { secondaryThemeColor } from "Css/Variables";
+import { secondaryThemeColor, whiteColor } from "Css/Variables";
 import styled from "styled-components";
 
 export const container = styled.div`
@@ -8,6 +8,10 @@ export const container = styled.div`
   justify-content: start;
   width:63%;
   gap: 10px;
+  background-color: ${whiteColor};
+  box-sizing: border-box;
+  padding: 10px;
+  border-radius:7px;
   @media (max-width:1320px) {
     width: 100%;
   }

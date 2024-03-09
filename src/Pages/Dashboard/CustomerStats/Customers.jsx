@@ -3,11 +3,9 @@ import { HiOutlineDotsVertical } from "react-icons/hi";
 import * as styled from "./CustomersStyles";
 import { secondaryThemeColor } from "Css/Variables";
 import millify from "millify";
-import LineChart from "components/Charts/LineChart/LineChart";
-import {
-  customersOptions,
-  customersSeries,
-} from "components/Charts/ChartsConfig";
+import LineChart from "../Charts/LineChart/LineChart";
+import { customersOptions, customersSeries } from "../Charts/ChartsConfig";
+
 
 const Customers = () => {
   const getWidth = () => {

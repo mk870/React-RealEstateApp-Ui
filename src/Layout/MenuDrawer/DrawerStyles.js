@@ -1,6 +1,28 @@
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { whiteColor } from "../../Css/Variables";
 
+const slideOut = keyframes`
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+`;
+const slideIn = keyframes`
+0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+`;
+const openDrawerAnimation = css`
+  animation: ${slideIn} 0.6s ease;
+`;
+const closeDrawerAnimation = css`
+  animation: ${slideOut} 0.6s ease;
+`;
 
 export const DrawerContainer = styled.div`
   display: flex;
@@ -9,25 +31,15 @@ export const DrawerContainer = styled.div`
   flex-direction: column;
   background-color: ${whiteColor};
   position: fixed;
-  left:0;
-  top:0;
-  bottom:0;
+  left: 0;
+  top: 0;
+  bottom: 0;
   width: 220px;
   z-index: 300;
-  overflow-y:scroll;
-  animation: moveInAnimation ease 0.6s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-  @keyframes moveInAnimation {
-    0% {
-      transform: translateX(-60%);
-    }
-    100% {
-      transform: translateX(0%);
-    }
-  }
+  overflow-y: scroll;
+  ${({ drawerIsOpen }) =>
+    drawerIsOpen ? openDrawerAnimation : closeDrawerAnimation}
 `;
-
 
 export const DrawerOverlay = styled.div`
   background-color: rgba(0, 0, 0, 0.8);
@@ -38,4 +50,3 @@ export const DrawerOverlay = styled.div`
   right: 0;
   pointer-events: all;
 `;
-

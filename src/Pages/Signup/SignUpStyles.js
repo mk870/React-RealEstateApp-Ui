@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { mainThemeColor, redColor, shadow, whiteColor } from "../../Css/Variables";
+import { lightMainThemeColor, mainThemeColor, redColor, shadow, whiteColor } from "../../Css/Variables";
 
 export const SignupWrapper = styled.div`
   display: flex;
@@ -7,7 +7,6 @@ export const SignupWrapper = styled.div`
   justify-content: start;
   flex-direction: column;
   width: 100%;
-  //min-height: 84vh;
 `;
 
 export const SignupForm = styled.form`
@@ -26,7 +25,7 @@ export const SignupFormWrapper = styled.div`
   justify-content: start;
   flex-direction: column;
   background-color: ${whiteColor};
-  width: 450px;
+  width: 400px;
   margin-top: 20px;
   margin-bottom: 50px;
   padding: 20px 20px;
@@ -73,8 +72,9 @@ export const validationErrorGuidelines = styled.span`
 `;
 export const SignupTextSpan = styled.span`
   font-size: 13px;
-  color: ${mainThemeColor};
+  color: ${lightMainThemeColor};
   text-decoration: underline;
+  font-weight: bold;
   &:hover {
     cursor: pointer;
   }

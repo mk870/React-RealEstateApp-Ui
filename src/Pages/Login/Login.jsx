@@ -12,9 +12,10 @@ import {
 } from "../../Utils/utils";
 import * as styled from "./LoginStyles";
 import Spinner from "../../components/Spinner/Spinner";
-import { loginRequest} from "../../HttpServices/Post/postData";
+import { loginRequest } from "../../HttpServices/Post/postData";
 import NotificationBar from "../../components/Notifications/NotificationBar";
 import { AppContext } from "Context/AppContext";
+import GoogleOAUTH2 from "components/GoogleOAUTH2/GoogleOAUTH2";
 
 const Login = () => {
   const [postResponse, setPostResponse] = useState({
@@ -27,7 +28,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const{setAccessToken}= useContext(AppContext)
+  const { setAccessToken } = useContext(AppContext);
   const [isPasswordValidationError, setIsPasswordValidationError] =
     useState(false);
   const [isEmailValidationError, setIsEmailValidationError] = useState(false);
@@ -77,12 +78,12 @@ const Login = () => {
   useEffect(() => {
     if (loginUserData.password !== "") {
       passwordValidator(setIsPasswordValidationError, loginUserData.password);
-    }
+    } else setIsPasswordValidationError(false);
   }, [loginUserData.password]);
   useEffect(() => {
     if (loginUserData.email !== "") {
       emailValidator(setIsEmailValidationError, loginUserData.email);
-    }
+    } else setIsEmailValidationError(false);
   }, [loginUserData.email]);
   useEffect(() => {
     if (postResponse && notificationBarRef.current) {
@@ -131,6 +132,7 @@ const Login = () => {
               ))}
             </styled.validationErrorWrapper>
           )}
+          <GoogleOAUTH2 type={"login"}/>
           <styled.LoginText>
             you don't have an account?{" "}
             <styled.LoginTextSpan onClick={() => navigate("/signup")}>
@@ -140,7 +142,7 @@ const Login = () => {
           <styled.LoginBtnContainer>
             <Button
               onClickFunc={undefined}
-              buttonText={isLoading ? <Spinner/> : "login"}
+              buttonText={isLoading ? <Spinner /> : "login"}
               type={"submit"}
               color={"normal"}
               size={"large"}

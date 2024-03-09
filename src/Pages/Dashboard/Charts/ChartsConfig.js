@@ -10,7 +10,36 @@ export const TotalRevenueSeries = [
     data: [6, 8, 7, 4, 10, 13, 14],
   },
 ];
-
+export const pieChartsData = [
+  {
+    title: "Properties For Sale",
+    value: 284,
+    series: [75, 25],
+    color: ["#475be8", "#b2c8ec"],
+    change: 17.31
+  },
+  {
+    title: "Rental Properties",
+    value: 190,
+    series: [68, 32],
+    color: ["#12801c", "#afe9b3"],
+    change: -5.60
+  },
+  {
+    title: "Properties Sold",
+    value: 230,
+    series: [83, 17],
+    color: ["#ee0e19", "#ecbcbc"],
+    change: 12.65
+  },
+  {
+    title: "Property Agents",
+    value: 170,
+    series: [44, 56],
+    color: ["#75139c", "#dfb0f0"],
+    change: 9.87
+  },
+];
 export const TotalRevenueOptions = {
   chart: {
     type: "bar",

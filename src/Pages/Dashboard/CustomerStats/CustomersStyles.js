@@ -1,4 +1,4 @@
-import { secondaryThemeColor } from "Css/Variables";
+import { secondaryThemeColor, whiteColor } from "Css/Variables";
 import styled from "styled-components";
 
 export const container = styled.div`
@@ -8,6 +8,10 @@ export const container = styled.div`
   flex-direction: column;
   gap: 10px;
   min-width: 800px;
+  background-color: ${whiteColor};
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius:7px;
   @media (max-width: 880px) {
     min-width: 100%;
   }

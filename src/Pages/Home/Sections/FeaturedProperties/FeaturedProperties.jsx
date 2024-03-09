@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import * as styled from "components/FeaturedProperties/FeaturedProperiesStyles";
+import * as styled from "./FeaturedProperiesStyles";
 import CardGrid from "components/CardGrid/CardGrid";
 import { featuredProperties } from "./Data/PropertyList";
 

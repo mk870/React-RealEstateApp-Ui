@@ -3,43 +3,18 @@ import React from "react";
 import { Page } from "../../Css/PageStyles";
 import { PageInnerContainer } from "../../Css/PageStyles";
 import * as styled from "./DashboardStyles";
-import PieChart from "components/Charts/PieChart/PieChart";
-import TotalRevenue from "components/TotalRevenue/TotalRevenue";
-import ReferralsInfo from "components/Referrals/ReferralsInfo";
-import TopAgents from "components/TopAgents/TopAgents";
-import LatestSales from "components/LatestPropertySales/LatestSales";
-import Customers from "components/CustomerStats/Customers";
+import PieChart from "./Charts/PieChart/PieChart";
+import TotalRevenue from "./TotalRevenue/TotalRevenue";
+import ReferralsInfo from "./Referrals/ReferralsInfo";
+import Customers from "./CustomerStats/Customers";
+import TopAgents from "./TopAgents/TopAgents";
+import LatestSales from "./LatestPropertySales/LatestSales";
+import { pieChartsData } from "./Charts/ChartsConfig";
 
 const DashBoard = () => {
-  const pieChartsData = [
-    {
-      title: "Properties For Sale",
-      value: 684,
-      series: [75, 25],
-      color: ["#475be8", "#b2c8ec"],
-    },
-    {
-      title: "Rental Properties",
-      value: 890,
-      series: [68, 32],
-      color: ["#12801c", "#afe9b3"],
-    },
-    {
-      title: "Properties Sold",
-      value: 6300,
-      series: [83, 17],
-      color: ["#ee0e19", "#ecbcbc"],
-    },
-    {
-      title: "Property Agents",
-      value: 4571,
-      series: [44, 56],
-      color: ["#75139c", "#dfb0f0"],
-    },
-  ];
   return (
-    <Page>
-      <PageInnerContainer>
+    <styled.Container>
+      <styled.PageInnerContainer>
         <styled.header>Dashboard</styled.header>
         <styled.chartRow>
           {pieChartsData.map((data) => (
@@ -49,6 +24,7 @@ const DashBoard = () => {
               colors={data.color}
               title={data.title}
               value={data.value}
+              change={data.change}
             />
           ))}
         </styled.chartRow>
@@ -61,8 +37,8 @@ const DashBoard = () => {
           <TopAgents/>
           <LatestSales/>
         </styled.row>
-      </PageInnerContainer>
-    </Page>
+      </styled.PageInnerContainer>
+    </styled.Container>
   );
 };
 
