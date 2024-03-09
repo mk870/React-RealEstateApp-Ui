@@ -30,6 +30,9 @@ export const userInfoContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 export const initials = styled.p`
   margin: 0;

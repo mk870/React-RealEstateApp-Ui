@@ -28,7 +28,7 @@ const UserDetails = () => {
         </styled.loginText>
       )}
       {accessToken && (
-        <styled.userInfoContainer>
+        <styled.userInfoContainer onClick={() => setOpenDropDown((value) => !value)}>
           {!profile?.Photo ? (
             <styled.initials backGround={themeColor}>
               {getUserInitial(profile.FirstName)}
@@ -44,13 +44,11 @@ const UserDetails = () => {
             <BsChevronDown
               size={iconSize}
               color={secondaryThemeColor}
-              onClick={() => setOpenDropDown((value) => !value)}
             />
           ) : (
             <BsChevronUp
               size={iconSize}
               color={secondaryThemeColor}
-              onClick={() => setOpenDropDown((value) => !value)}
             />
           )}
         </styled.userInfoContainer>
