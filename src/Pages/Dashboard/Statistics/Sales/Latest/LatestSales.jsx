@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import millify from "millify";
 
 import * as styled from "./LatestSalesStyles";
-import { latestsalesList } from "./Data/latestSalesList";
+import { latestsalesList } from "../Data/latestSalesList";
 import { addPropertyCoordinates } from "Redux/Slices/Property/PropertyCoordinatesSlice";
 
 const LatestSales = () => {

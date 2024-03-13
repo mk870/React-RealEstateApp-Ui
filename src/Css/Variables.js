@@ -7,6 +7,7 @@ export const whiteColor = "white";
 export const backgroundColor = "rgb(228,232,239)";
 export const lightBackgroundColor = "rgb(228,232,239,0.4)";
 export const redColor = "#FF2700";
+export const lightRed = "#F45252"
 export const shadow = "0 4px 8px 0 rgba(0, 0, 0, 0.4)";
 
 export const skeletonAnimation = keyframes`

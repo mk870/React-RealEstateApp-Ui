@@ -1,13 +1,13 @@
 import React from "react";
-import { HiOutlineDotsVertical } from "react-icons/hi";
-import * as styled from "./CustomersStyles";
-import { secondaryThemeColor } from "Css/Variables";
 import millify from "millify";
-import LineChart from "../Charts/LineChart/LineChart";
-import { customersOptions, customersSeries } from "../Charts/ChartsConfig";
+import { HiOutlineDotsVertical } from "react-icons/hi";
+import { secondaryThemeColor } from "Css/Variables";
 
+import * as styled from "./LineGraphStyles";
+import LineChart from "Pages/Dashboard/Charts/LineChart/LineChart";
+import { customersOptions, customersSeries } from "Pages/Dashboard/Charts/ChartsConfig";
 
-const Customers = () => {
+const CustomerLineChart = () => {
   const getWidth = () => {
     return "100%";
   };
@@ -33,4 +33,4 @@ const Customers = () => {
   );
 };
 
-export default Customers;
+export default CustomerLineChart;

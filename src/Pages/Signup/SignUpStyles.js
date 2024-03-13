@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { lightMainThemeColor, mainThemeColor, redColor, shadow, whiteColor } from "../../Css/Variables";
+import { lightMainThemeColor, redColor, shadow, whiteColor } from "../../Css/Variables";
 
 export const SignupWrapper = styled.div`
   display: flex;

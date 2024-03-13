@@ -7,7 +7,7 @@ export const container = styled.div`
   justify-content: start;
   flex-direction: column;
   gap: 10px;
-  width: 30%;
+  width: 100%;
   background-color: ${whiteColor};
   border-radius:7px;
   box-sizing: border-box;

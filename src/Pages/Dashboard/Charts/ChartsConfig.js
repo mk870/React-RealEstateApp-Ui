@@ -1,5 +1,7 @@
 //import { ApexOptions } from 'apexcharts';
 
+import { lightRed } from "Css/Variables";
+
 export const TotalRevenueSeries = [
   {
     name: "Properties For Sale",
@@ -8,6 +10,10 @@ export const TotalRevenueSeries = [
   {
     name: "Rental Properties",
     data: [6, 8, 7, 4, 10, 13, 14],
+  },
+  {
+    name: "Other",
+    data: [2, 4, 3, 1, 5, 7, 1],
   },
 ];
 export const pieChartsData = [
@@ -47,7 +53,7 @@ export const TotalRevenueOptions = {
       show: false,
     },
   },
-  colors: ["#475BE8", "#CFC8FF"],
+  colors: ["#475BE8", "#CFC8FF",lightRed],
   plotOptions: {
     bar: {
       borderRadius: 4,
@@ -129,7 +135,7 @@ export const customersSeries = [
 export const customersOptions = {
   chart: {
     height: 320,
-    type: "line",
+    type: "area",
     zoom: {
       enabled: false,
     },
@@ -138,7 +144,7 @@ export const customersOptions = {
     enabled: false,
   },
   stroke: {
-    curve: "straight",
+    curve: "smooth",
   },
   title: {
     text: "Subscriptions per month",
