@@ -1,6 +1,13 @@
-import { secondaryThemeColor, whiteColor } from "Css/Variables";
 import styled from "styled-components";
+import { secondaryThemeColor, whiteColor } from "Css/Variables";
 
+export const chartRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-wrap: wrap;
+  gap: 10px;
+`;
 export const container = styled.div`
   display: flex;
   align-items: center;

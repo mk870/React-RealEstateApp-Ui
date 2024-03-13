@@ -7,11 +7,11 @@ export const container = styled.div`
   justify-content: start;
   flex-direction: column;
   gap: 10px;
-  min-width: 800px;
   background-color: ${whiteColor};
   padding: 10px;
   box-sizing: border-box;
   border-radius:7px;
+  width: 100%;
   @media (max-width: 880px) {
     min-width: 100%;
   }

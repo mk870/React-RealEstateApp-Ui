@@ -3,15 +3,15 @@ import styled from "styled-components";
 
 export const container = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
   justify-content: start;
-  width:63%;
+  flex-direction: column;
   gap: 10px;
+  width: 100%;
   background-color: ${whiteColor};
-  box-sizing: border-box;
-  padding: 10px;
   border-radius:7px;
+  box-sizing: border-box;
+  padding: 15px;
   @media (max-width:1320px) {
     width: 100%;
   }

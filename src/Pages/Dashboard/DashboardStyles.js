@@ -20,20 +20,13 @@ export const PageInnerContainer = styled.div`
   height: 100%;
   box-sizing: border-box;
   border-radius: 10px;
+  gap: 10px;
 `;
 
 export const header = styled.p`
-  margin: 10px 0;
   font-size: 18px;
   font-weight: bold;
   color: black;
-`;
-export const chartRow = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  flex-wrap: wrap;
-  gap: 10px;
 `;
 
 export const wrapper = styled.div`

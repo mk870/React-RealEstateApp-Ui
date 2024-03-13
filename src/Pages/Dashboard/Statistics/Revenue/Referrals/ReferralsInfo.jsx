@@ -1,7 +1,7 @@
 import React from "react";
 import * as styled from "./ReferralsInfoStyles";
-import ProgressBar from "Pages/Dashboard/Referrals/ProgressBar/ProgressBar";
-import { propertyReferralsInfo } from "../Charts/ChartsConfig";
+import { propertyReferralsInfo } from "Pages/Dashboard/Charts/ChartsConfig";
+import ProgressBar from "./ProgressBar/ProgressBar";
 
 const ReferralsInfo = () => {
   return (

@@ -1,4 +1,7 @@
-import { backgroundColor, lightBackgroundColor, secondaryThemeColor } from "Css/Variables";
+import {
+  lightBackgroundColor,
+  secondaryThemeColor,
+} from "Css/Variables";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -13,9 +16,9 @@ export const SignupContainer = styled.div`
   padding: 7px 10px;
   border: 1px solid ${secondaryThemeColor};
   gap: 5px;
-  &:hover{
-   cursor: pointer;
-   background-color:${lightBackgroundColor};
+  &:hover {
+    cursor: pointer;
+    background-color: ${lightBackgroundColor};
   }
 `;
 
