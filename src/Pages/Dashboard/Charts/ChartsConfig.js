@@ -53,7 +53,7 @@ export const TotalRevenueOptions = {
       show: false,
     },
   },
-  colors: ["#475BE8", "#CFC8FF",lightRed],
+  colors: ["#475BE8", "#CFC8FF","#ee0e19"],
   plotOptions: {
     bar: {
       borderRadius: 4,

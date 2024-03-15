@@ -1,8 +1,8 @@
 import React from 'react'
-import * as styled from './TypeStyles'
+import * as styled from './SegmentsStyles'
 import { mainThemeColor, secondaryThemeColor } from 'Css/Variables'
 
-const Type = () => {
+const Segments = () => {
   const categories = [
     {
       number: 1,
@@ -64,4 +64,4 @@ const Type = () => {
   )
 }
 
-export default Type
+export default Segments

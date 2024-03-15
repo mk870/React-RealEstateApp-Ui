@@ -17,42 +17,32 @@ export const container = styled.div`
     width: 100%;
   }
 `;
-
 export const title = styled.p`
   margin: 0;
   font-size: 18px;
   font-weight: bold;
   color: black;
 `;
-
-export const Country = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  width: 100%;
-`;
-
-export const row = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  gap: 5px;
-`;
-
-export const Flag = styled.img`
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-`;
-
-export const CountryName = styled.p`
-  margin: 0;
-  font-size: 13px;
-  font-weight: bold;
-  color: black;
-`;
-
-export const Text = styled.p`
+export const text = styled.p`
   margin: 0;
   font-size: 13px;
   color: ${secondaryThemeColor};
+`;
+export const chartWrapper = styled.div`
+  width: 95%;
+  height: 400px;
+`;
+export const labelWrapper = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: start;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 8px;
+`;
+export const label = styled.div`
+  font-size: 12px;
+  span {
+    color: black;
+  }
 `;

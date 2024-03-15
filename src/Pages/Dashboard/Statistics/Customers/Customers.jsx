@@ -3,8 +3,8 @@ import React from "react";
 import * as styled from "./CustomersStyles";
 import LineGraph from "./LineGraph/LineGraph";
 import Origins from "./Origins/Origins";
-import Type from "./Type/Type";
 import Satisfaction from "./Satisfaction/Satisfaction";
+import Segments from "./Segments/Segments";
 
 const Customers = () => {
   return (
@@ -12,7 +12,7 @@ const Customers = () => {
       <LineGraph />
       <styled.SubContainer>
         <styled.Row>
-          <Type />
+          <Segments />
           <Satisfaction />
         </styled.Row>
         <Origins />

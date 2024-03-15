@@ -80,7 +80,7 @@ const Navbar = ({ mobileMenu }) => {
   const inputSize = () => {
     if (screenSize < 460 && screenSize > 360) {
       return "small";
-    } else if (screenSize < 360) {
+    } else if (screenSize <= 360) {
       return "xsmall";
     } else return "medium";
   };

@@ -8,13 +8,11 @@ export const container = styled.div`
   flex-direction: column;
   box-sizing: border-box;
   padding: 5px;
-  min-width: 400px;
+  width: 100%;
+  height: 100%;
   background-color: ${whiteColor};
   padding: 10px;
   border-radius:7px;
-  @media (max-width: 450px) {
-    min-width: 100%;
-  }
 `;
 export const header = styled.div`
   display: flex;
@@ -33,7 +31,7 @@ export const title = styled.p`
   }
 `;
 export const propertyName = styled.p`
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
   color: black;
   margin: 0;
@@ -42,7 +40,7 @@ export const propertyName = styled.p`
   }
 `;
 export const propertyAddress = styled.p`
-  font-size: 14px;
+  font-size: 13px;
   font-weight: normal;
   color: ${secondaryThemeColor};
   margin: 0;
@@ -51,7 +49,7 @@ export const propertyAddress = styled.p`
   }
 `;
 export const salesAmount = styled.p`
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
   color: ${mainThemeColor};
   margin: 0;
@@ -115,7 +113,7 @@ export const salesInfo = styled.div`
 `;
 export const propertyImage = styled.img`
   width: 50px;
-  height: 50px;
+  height: 35px;
 `;
 export const propertyDetails = styled.div`
   display: flex;

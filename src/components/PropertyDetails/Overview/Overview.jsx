@@ -218,7 +218,6 @@ const Overview = ({ property, type }) => {
   const handlePost = (e) => {
     e.stopPropagation();
     setIsLoading(true);
-    console.log(property);
     if (accessToken) {
       const propertyData = {
         Property_id: stringToNumber(property.property_id),

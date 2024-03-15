@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import * as styled from "./PropertyDetailsStyles";
 import ImageScroller from "components/ImageScroller/ImageScroller";
-import MapDisplay from "components/PropertyDetails/Map/Map";
+import MapDisplay from "components/PropertyDetails/MapDisplay/MapDisplay";
 import OtherFeatures from "./OtherFeatures/OtherFeatures";
 import Overview from "components/PropertyDetails/Overview/Overview";
 import Schools from "./Schools/Schools";

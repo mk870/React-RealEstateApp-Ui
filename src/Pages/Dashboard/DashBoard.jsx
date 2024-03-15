@@ -6,6 +6,7 @@ import Summary from "./Statistics/Summary/Summary";
 import Revenue from "./Statistics/Revenue/Revenue";
 import Sales from "./Statistics/Sales/Sales";
 import Agents from "./Statistics/Agents/Agents";
+import SalesAnalysis from "./Statistics/SalesAnalysis/SalesAnalysis";
 
 const DashBoard = () => {
   return (
@@ -15,8 +16,9 @@ const DashBoard = () => {
         <Summary />
         <Revenue />
         <Customers />
-        {/* <Sales />
-        <Agents /> */}
+        <Sales />
+        <SalesAnalysis/>
+        {/* <Agents /> */}
       </styled.PageInnerContainer>
     </styled.Container>
   );
