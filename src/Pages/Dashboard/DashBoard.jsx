@@ -18,7 +18,7 @@ const DashBoard = () => {
         <Customers />
         <Sales />
         <SalesAnalysis/>
-        {/* <Agents /> */}
+        <Agents />
       </styled.PageInnerContainer>
     </styled.Container>
   );

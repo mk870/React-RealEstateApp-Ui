@@ -55,7 +55,7 @@ const Locations = () => {
     <styled.container>
       <styled.title>
         Top 10 Cities in Property Sales{" "}
-        <styled.text>(last 6 months)</styled.text>
+        <styled.text>(last 7 months)</styled.text>
       </styled.title>
       <styled.subContainer>
         <styled.mapContainer>

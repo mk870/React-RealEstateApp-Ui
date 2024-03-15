@@ -3,7 +3,7 @@ import { useState } from "react";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 
 import * as styled from "./TopAgentsStyles";
-import { agentsList } from "../Data/AgentsList";
+import { agentsList } from "./Data/AgentsList";
 
 const TopAgents = () => {
   const [topAgents] = useState(agentsList);

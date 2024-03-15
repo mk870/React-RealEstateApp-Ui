@@ -7,6 +7,7 @@ import ChineseFlag from "Assets/flag4.jpg";
 import IndianFlag from "Assets/flag5.jpg";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { redColor } from "Css/Variables";
+import Counter from "Pages/Dashboard/Counter/Counter";
 
 const Origins = () => {
   const countries = [
@@ -63,7 +64,9 @@ const Origins = () => {
           </styled.row>
           <styled.CountryName>{country.name}</styled.CountryName>
           <styled.Text>{country.amount}</styled.Text>
-          <styled.Text>{country.percentage}%</styled.Text>
+          <styled.Text>
+            <Counter amount={country.percentage} speed={1} />%
+          </styled.Text>
           {country.change > 0 ? (
             <FaArrowUp size={15} color="green" />
           ) : (

@@ -28,6 +28,9 @@ export const funnelOptions = {
     },
   },
   colors: ["#0A573B"],
+  grid: {
+    show: false,
+  },
   dataLabels: {
     enabled: true,
     formatter: function (val, opt) {

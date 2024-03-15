@@ -23,7 +23,7 @@ const Funnel = () => {
   return (
     <styled.container>
       <styled.title>
-        Sales Funnel <styled.text>(last 6 months)</styled.text>
+        Sales Funnel <styled.text>(last 7 months)</styled.text>
       </styled.title>
       <styled.chartWrapper>
         <ReactApexChart

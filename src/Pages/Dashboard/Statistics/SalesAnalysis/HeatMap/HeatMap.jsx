@@ -23,7 +23,7 @@ const HeatMap = () => {
   return (
     <styled.container>
       <styled.title>
-        Sales Heat Map <styled.text>(last 6 months)</styled.text>
+        Sales Heat Map <styled.text>(last 7 months)</styled.text>
       </styled.title>
       <styled.chartWrapper>
         <ReactApexChart

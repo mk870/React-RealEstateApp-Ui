@@ -8,7 +8,8 @@ export const container = styled.div`
   flex-direction: column;
   box-sizing: border-box;
   padding: 5px;
-  min-width: 400px;
+  width: 100%;
+  height: 100%;
   background-color: ${whiteColor};
   padding: 10px;
   border-radius:7px;
@@ -60,7 +61,7 @@ export const agentName = styled.p`
   }
 `;
 export const agentEmail = styled.p`
-  font-size: 14px;
+  font-size: 13px;
   color: ${secondaryThemeColor};
   font-weight: normal;
   margin: 0;

@@ -15,6 +15,7 @@ import {
 } from "react-icons/md";
 import { IoPeopleOutline } from "react-icons/io5";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+import Counter from "Pages/Dashboard/Counter/Counter";
 
 const Card = ({ city, prevSlide, nextSlide }) => {
   const iconSize = 20;
@@ -74,7 +75,9 @@ const Card = ({ city, prevSlide, nextSlide }) => {
         <styled.row>
           <IoPeopleOutline style={iconStyles()} size={iconSize} />
           <styled.TypeText>Agents:</styled.TypeText>
-          <styled.Text>{city.agents}</styled.Text>
+          <styled.Text>
+            <Counter amount={city.agents} speed={1} />
+          </styled.Text>
           {city.agentsChange > 0 ? (
             <HiOutlineArrowTrendingUp color="green" size={iconSize} />
           ) : (
@@ -84,7 +87,9 @@ const Card = ({ city, prevSlide, nextSlide }) => {
         <styled.row>
           <MdOutlineMapsHomeWork style={iconStyles()} size={iconSize} />
           <styled.TypeText>Properties Left:</styled.TypeText>
-          <styled.Text>{city.prortiesAvailable}</styled.Text>
+          <styled.Text>
+            <Counter amount={city.prortiesAvailable} speed={1} />
+          </styled.Text>
           {city.propertiesLeftChangeChange > 0 ? (
             <HiOutlineArrowTrendingUp color="green" size={iconSize} />
           ) : (

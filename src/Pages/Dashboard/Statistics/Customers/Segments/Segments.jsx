@@ -1,6 +1,7 @@
 import React from 'react'
 import * as styled from './SegmentsStyles'
 import { mainThemeColor, secondaryThemeColor } from 'Css/Variables'
+import Counter from 'Pages/Dashboard/Counter/Counter'
 
 const Segments = () => {
   const categories = [
@@ -54,7 +55,7 @@ const Segments = () => {
           {
             categories.map((category)=>(
               <styled.Bar key={category.number} color={category.color}>
-                {category.percentage}%
+                <Counter amount={category.percentage} speed={1}/>%
               </styled.Bar>
             ))
           }

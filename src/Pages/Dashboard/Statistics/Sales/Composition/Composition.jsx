@@ -19,7 +19,7 @@ const Composition = () => {
   }
   return (
     <styled.container>
-      <styled.Title>Sales Composition <styled.text>(last 6 months)</styled.text></styled.Title>
+      <styled.Title>Sales Composition <styled.text>(last 7 months)</styled.text></styled.Title>
       <PieChart
           type={"pie"}
           width={size()}
