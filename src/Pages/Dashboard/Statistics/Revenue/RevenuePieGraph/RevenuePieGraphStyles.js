@@ -12,13 +12,13 @@ export const container = styled.div`
   background-color: ${whiteColor};
   box-sizing: border-box;
   padding: 5px 10px;
-  border-radius:7px;
+  border-radius: 7px;
 `;
 export const Title = styled.span`
-font-size: 18px;
-font-weight: bold;
-color:black;
-`
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+`;
 export const SubContainer = styled.div`
   display: flex;
   align-items: flex-start;
@@ -29,5 +29,5 @@ export const SubContainer = styled.div`
   height: 100%;
   background-color: ${whiteColor};
   box-sizing: border-box;
-  border-radius:7px;
+  border-radius: 7px;
 `;

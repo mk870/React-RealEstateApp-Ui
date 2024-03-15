@@ -1,8 +1,9 @@
 import React from 'react'
-import * as styled from './TypeStyles'
+import * as styled from './SegmentsStyles'
 import { mainThemeColor, secondaryThemeColor } from 'Css/Variables'
+import Counter from 'Pages/Dashboard/Counter/Counter'
 
-const Type = () => {
+const Segments = () => {
   const categories = [
     {
       number: 1,
@@ -54,7 +55,7 @@ const Type = () => {
           {
             categories.map((category)=>(
               <styled.Bar key={category.number} color={category.color}>
-                {category.percentage}%
+                <Counter amount={category.percentage} speed={1}/>%
               </styled.Bar>
             ))
           }
@@ -64,4 +65,4 @@ const Type = () => {
   )
 }
 
-export default Type
+export default Segments

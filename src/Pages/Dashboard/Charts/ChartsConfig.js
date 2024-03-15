@@ -53,7 +53,7 @@ export const TotalRevenueOptions = {
       show: false,
     },
   },
-  colors: ["#475BE8", "#CFC8FF",lightRed],
+  colors: ["#475BE8", "#CFC8FF","#ee0e19"],
   plotOptions: {
     bar: {
       borderRadius: 4,
@@ -151,10 +151,7 @@ export const customersOptions = {
     align: "left",
   },
   grid: {
-    row: {
-      colors: ["#f3f3f3", "transparent"],
-      opacity: 0.5,
-    },
+    show: false,
   },
   xaxis: {
     categories: [

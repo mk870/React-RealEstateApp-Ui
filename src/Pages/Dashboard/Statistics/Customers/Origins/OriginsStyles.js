@@ -32,11 +32,11 @@ export const Country = styled.div`
 `;
 
 export const row = styled.div`
-display:flex ;
-align-items: center;
-justify-content: start;
-gap: 5px;
-`
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 5px;
+`;
 
 export const Flag = styled.img`
   width: 30px;

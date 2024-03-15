@@ -65,6 +65,7 @@ export const messagingSenderId = process.env.REACT_APP_MESSAGING_SENDER_ID;
 export const appId = process.env.REACT_APP_ID;
 export const googleClientId = process.env.REACT_APP_CLIENT_ID;
 export const googleSecretId = process.env.REACT_APP_SECRET_ID;
+export const mapApiKey = process.env.REACT_APP_MAPBOX_TOKEN;
 
 export const dateConverter = (date) => {
   const year = date.getFullYear().toString();

@@ -14,21 +14,21 @@ const RevenueOverTime = () => {
   const revenueStreams = [
     {
       name: "Properties forsale",
-      Week: { amount: 200000, change: 3.68 },
-      Month: { amount: 700000, change: -1.68 },
-      Quarter: { amount: 10200000, change: -3.68 },
+      Week: { amount: 2000000, change: 3.68 },
+      Month: { amount: 19000000, change: -1.68 },
+      Quarter: { amount: 50000000, change: -3.68 },
     },
     {
       name: "Rental Properties",
-      Week: { amount: 23000, change: -3.68 },
-      Month: { amount: 13000, change: -1.68 },
-      Quarter: { amount: 3200000, change: 3.68 },
+      Week: { amount: 2300000, change: -3.68 },
+      Month: { amount: 14000000, change: -1.68 },
+      Quarter: { amount: 37000000, change: 3.68 },
     },
     {
       name: "Other",
-      Week: { amount: 2000, change: 3.68 },
-      Month: { amount: 7000, change: 1.68 },
-      Quarter: { amount: 20000, change: 3.68 },
+      Week: { amount: 200000, change: 3.68 },
+      Month: { amount: 1000000, change: 1.68 },
+      Quarter: { amount: 12000000, change: 3.68 },
     },
   ];
   return (

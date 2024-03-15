@@ -21,7 +21,7 @@ const BarGraph = () => {
       <styled.title>Total Revenue</styled.title>
       <styled.totalRevenueContainer>
         <styled.total>
-          $<Counter amount={33} /> 000 000
+          $<Counter amount={201} speed={1}/> 000 000
         </styled.total>
         <styled.statistics>
           <BsArrowUpCircleFill fontSize={20} color={mainThemeColor} />
@@ -29,7 +29,7 @@ const BarGraph = () => {
             <styled.statisticsText>
               <Counter amount={10} speed={10} />%
             </styled.statisticsText>
-            <styled.statisticsText>Than Last Month</styled.statisticsText>
+            <styled.statisticsText>Last 7 Months</styled.statisticsText>
           </styled.statisticsInnerContainer>
         </styled.statistics>
       </styled.totalRevenueContainer>

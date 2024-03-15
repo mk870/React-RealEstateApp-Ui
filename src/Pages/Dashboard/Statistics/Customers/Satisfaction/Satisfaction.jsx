@@ -17,7 +17,7 @@ const Satisfaction = () => {
           type="radialBar"
           height={"180px"}
         />
-        <styled.text>Based on likes</styled.text>
+        <styled.text>Based on Reviews</styled.text>
       </styled.Chart>
     </styled.container>
   );

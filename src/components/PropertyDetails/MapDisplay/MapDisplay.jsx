@@ -4,14 +4,13 @@ import { useSelector } from "react-redux";
 import { AiOutlineNumber } from "react-icons/ai";
 import { FaCity, FaFlagUsa } from "react-icons/fa";
 import { MdOutlineLandscape } from "react-icons/md";
-import Map, { Marker, NavigationControl } from "react-map-gl";
-import "mapbox-gl/dist/mapbox-gl.css";
+
 
 import { mainThemeColor } from "Css/Variables";
-import * as styled from "./MapStyles";
-import markerSvg from "Assets/marker.svg";
+import * as styled from "./MapDisplayStyles";
+import Map from "components/Map/MapView";
 
-//--openssl-legacy-provider
+
 const MapDisplay = ({ coordinates, property }) => {
   const { lon, lat } = coordinates;
   const [viewState, setViewState] = useState({
@@ -113,17 +112,7 @@ const MapDisplay = ({ coordinates, property }) => {
         ))}
       </styled.grid>
       <styled.mapContainer>
-        <Map
-          {...viewState}
-          onMove={(event) => setViewState(event.viewState)}
-          mapStyle="mapbox://styles/mapbox/streets-v11"
-          mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        >
-          <Marker longitude={lon} latitude={lat}>
-            <styled.marker src={markerSvg} />
-          </Marker>
-          <NavigationControl />
-        </Map>
+        <Map setViewState={setViewState} viewState={viewState}/>
       </styled.mapContainer>
     </styled.container>
   );
