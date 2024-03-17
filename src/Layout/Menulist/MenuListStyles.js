@@ -1,5 +1,6 @@
 import styled, { css, keyframes } from "styled-components";
 import {
+  lightMainThemeColor,
   mainThemeColor,
   secondaryThemeColor,
   shadow,
@@ -101,6 +102,22 @@ export const MenuHeader = styled.p`
     font-size: 15px;
   }
 `;
+export const menuItemText = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  color: ${(props) => (props.clicked ? whiteColor : secondaryThemeColor)};
+  .menu-icon {
+    font-size: 22px;
+  }
+  @media (max-width: 920px) {
+    font-size: 14px;
+    .menu-icon {
+      font-size: 18px;
+    }
+  }
+`;
 export const menuItem = styled.div`
   display: flex;
   align-items: center;
@@ -120,11 +137,12 @@ export const menuItem = styled.div`
   position: relative;
   &:hover {
     cursor: pointer;
+    background-color: ${ lightMainThemeColor};
     ${({ shrinkMenuSize, tooltipContent }) =>
       shrinkMenuSize &&
       css`
         &::before {
-          content: '${tooltipContent}';
+          content: "${tooltipContent}";
           position: absolute;
           top: -19px;
           left: -9px;
@@ -139,6 +157,9 @@ export const menuItem = styled.div`
           box-shadow: ${shadow};
         }
       `};
+      ${menuItemText}{
+        color: ${whiteColor};
+      }
   }
   border-radius: 7px;
   @media (max-width: 920px) {
@@ -147,22 +168,7 @@ export const menuItem = styled.div`
     font-size: 13px;
   }
 `;
-export const menuItemText = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: space-between;
-  color: ${(props) => (props.clicked ? whiteColor : secondaryThemeColor)};
-  .menu-icon {
-    font-size: 22px;
-  }
-  @media (max-width: 920px) {
-    font-size: 14px;
-    .menu-icon {
-      font-size: 18px;
-    }
-  }
-`;
+
 export const name = styled.p`
   margin-left: 10px;
   display: ${({ displayValue }) => displayValue};

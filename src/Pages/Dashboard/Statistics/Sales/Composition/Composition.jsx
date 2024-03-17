@@ -1,4 +1,5 @@
 import React from 'react'
+
 import * as styled from './CompositionStyles'
 import PieChart from 'Pages/Dashboard/Charts/PieChart/PieChart'
 

@@ -14,3 +14,6 @@ export const skeletonAnimation = keyframes`
   0% { background-color:${backgroundColor};}
   100% { background-color: #808080;}
 `;
+export const commonInViewStyles = {
+  width: "100%"
+}

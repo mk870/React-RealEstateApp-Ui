@@ -78,9 +78,9 @@ const Navbar = ({ mobileMenu }) => {
     }
   };
   const inputSize = () => {
-    if (screenSize < 460 && screenSize > 360) {
+    if (screenSize < 460 && screenSize > 380) {
       return "small";
-    } else if (screenSize <= 360) {
+    } else if (screenSize <= 380) {
       return "xsmall";
     } else return "medium";
   };
@@ -101,7 +101,7 @@ const Navbar = ({ mobileMenu }) => {
       {mobileMenu && (
         <AiOutlineMenu
           color={"black"}
-          size={screenSize < 550 ? 22 : 28}
+          size={screenSize < 550 ? 26 : 28}
           onClick={() => setOpenMobileMenu((value) => !value)}
         />
       )}

@@ -10,17 +10,17 @@ export const container = styled.div`
   width: 100%;
   height: 100%;
   background-color: ${whiteColor};
-  border-radius:7px;
+  border-radius: 7px;
   box-sizing: border-box;
   padding: 15px;
-  @media (max-width:1320px) {
+  @media (max-width: 1320px) {
     width: 100%;
   }
 `;
 export const Title = styled.span`
-font-size: 18px;
-font-weight: bold;
-color: black;
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
 `;
 
 export const text = styled.p`

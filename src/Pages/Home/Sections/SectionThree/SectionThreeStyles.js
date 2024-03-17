@@ -18,17 +18,17 @@ export const container = styled.div`
 `;
 
 export const header = styled.div`
-    display: flex;
+  display: flex;
   align-items: center;
   justify-content: start;
   flex-direction: column;
   gap: 10px;
   box-sizing: border-box;
-  width:100%;
+  width: 100%;
   @media (max-width: 410px) {
     text-align: center;
   }
-`
+`;
 export const headerText = styled.p`
   font-size: 25px;
   color: black;
@@ -37,7 +37,7 @@ export const headerText = styled.p`
   @media (max-width: 480px) {
     font-size: 16px;
   }
-`
+`;
 export const subheaderText = styled.p`
   font-size: 15px;
   color: ${secondaryThemeColor};
@@ -45,13 +45,13 @@ export const subheaderText = styled.p`
   @media (max-width: 480px) {
     font-size: 13px;
   }
-`
+`;
 export const mapImage = styled.img`
-width: auto;
-height:auto;
-border-radius:7px;
-@media (max-width: 1000px) {
-  width: 100%;
-  height:auto;
+  width: auto;
+  height: auto;
+  border-radius: 7px;
+  @media (max-width: 1240px) {
+    width: 100%;
+    height: auto;
   }
-`
+`;

@@ -1,15 +1,37 @@
-import React from 'react'
-import * as styled from './AgentsStyles'
-import TopAgents from './TopAgents/TopAgents'
-import AgentFees from './AgentFees/AgentFees'
+import React from "react";
+import { useSelector } from "react-redux";
+
+import TopAgents from "./TopAgents/TopAgents";
+import AgentFees from "./AgentFees/AgentFees";
+import InViewAnimation from "HOCs/InViewAnimation";
 
 const Agents = () => {
+  const screenSize = useSelector((state) => state.screenSize.value);
+  const styles = () => {
+    if (screenSize >= 1000) {
+      return {
+        display: "grid",
+        gridTemplateColumns: "2fr 1fr",
+        width: "100%",
+        gap: "10px",
+      };
+    } else {
+      return {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "100%",
+        gap: "10px",
+      };
+    }
+  };
   return (
-    <styled.Container>
-      <AgentFees/>
-      <TopAgents/>
-    </styled.Container>
-  )
-}
+    <InViewAnimation styles={styles()}>
+      <AgentFees />
+      <TopAgents />
+    </InViewAnimation>
+  );
+};
 
-export default Agents
+export default Agents;

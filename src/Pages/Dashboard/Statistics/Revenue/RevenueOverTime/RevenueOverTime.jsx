@@ -10,6 +10,7 @@ import millify from "millify";
 
 const RevenueOverTime = () => {
   const [timePeriod, setTimePeriod] = useState("Week");
+  const [changeTimePeriod, setChangeTimePeriod] = useState(false);
   const timePeriodList = ["Week", "Month", "Quarter"];
   const revenueStreams = [
     {
@@ -31,6 +32,13 @@ const RevenueOverTime = () => {
       Quarter: { amount: 12000000, change: 3.68 },
     },
   ];
+  const setNewTimePeriod = (timePeriod) => {
+    setChangeTimePeriod(true);
+    setTimePeriod(timePeriod);
+    setTimeout(() => {
+      setChangeTimePeriod(false);
+    }, 500);
+  };
   return (
     <styled.container>
       <styled.title>{`Revenue Last ${timePeriod}`}</styled.title>
@@ -40,7 +48,7 @@ const RevenueOverTime = () => {
             <styled.TimeText
               key={period}
               isClicked={period === timePeriod ? true : false}
-              onClick={() => setTimePeriod(period)}
+              onClick={() => setNewTimePeriod(period)}
             >
               {period}
             </styled.TimeText>
@@ -48,7 +56,10 @@ const RevenueOverTime = () => {
         </styled.Time>
       </styled.TimeWrapper>
       {revenueStreams.map((data) => (
-        <styled.SubContainer key={data.name}>
+        <styled.SubContainer
+          key={data.name}
+          changeTimePeriod={changeTimePeriod}
+        >
           <styled.Column>
             <styled.Header>{data.name}</styled.Header>
             <styled.Text>Total Revenue</styled.Text>

@@ -10,7 +10,7 @@ export const Container = styled.div`
   flex-direction: ${(props) =>
     props.selectSize === "large" ? "column" : "row"};
   box-sizing: border-box;
-  .astricks{
+  .astricks {
     position: absolute;
     left: 101%;
     top: 25px;
@@ -53,4 +53,5 @@ export const select = styled.select`
       : (props) => (props.selectSize === "medium" ? "25px" : "25px")};
   border-radius: 5px;
   outline: none;
+  color:${secondaryThemeColor};
 `;

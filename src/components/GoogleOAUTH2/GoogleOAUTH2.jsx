@@ -57,6 +57,7 @@ const GoogleOAUTH2 = ({ type, setIsLoading }) => {
               setAuthError(e.message);
             }}
             text={type === "login" ? "signin_with" : "signup_with"}
+            shape="pill"
           />
         </styled.Container>
       )}

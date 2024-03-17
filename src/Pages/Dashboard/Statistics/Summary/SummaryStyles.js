@@ -7,6 +7,7 @@ export const chartRow = styled.div`
   justify-content: start;
   flex-wrap: wrap;
   gap: 10px;
+  width: 100%;
 `;
 export const container = styled.div`
   display: flex;

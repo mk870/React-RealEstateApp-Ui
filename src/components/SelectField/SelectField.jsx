@@ -43,7 +43,6 @@ const SelectField = ({ label, handleSelectFunc, value, type, size , isRequired})
         value={value}
         onChange={(e) => handleSelectFunc(e.target.value)}
         selectSize={size}
-        //isRequired={isRequired}
       >
         {selectOptions().map((option) => (
           <option key={option.name} value={option.abbreviation}>

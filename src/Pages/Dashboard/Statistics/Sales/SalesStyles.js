@@ -3,8 +3,6 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: grid;
   grid-template-columns: 2fr 1fr;
-  align-items: center;
-  justify-content: start;
   width: 100%;
   gap: 10px;
   @media (max-width: 1260px) {
@@ -12,10 +10,10 @@ export const Container = styled.div`
   }
   @media (max-width: 1000px) {
     display: flex;
-  align-items: center;
-  justify-content: start;
-  flex-direction: column;
-  height: 100%;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    height: 100%;
   }
 `;
 export const Column = styled.div`

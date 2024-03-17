@@ -10,8 +10,9 @@ import { MdOutlineRealEstateAgent, MdOutlineSell } from "react-icons/md";
 import { pieChartsData } from "Pages/Dashboard/Charts/ChartsConfig";
 import PieChart from "Pages/Dashboard/Charts/PieChart/PieChart";
 import * as styled from "./SummaryStyles";
-import { redColor } from "Css/Variables";
+import { commonInViewStyles, redColor } from "Css/Variables";
 import Counter from "Pages/Dashboard/Counter/Counter";
+import InViewAnimation from "HOCs/InViewAnimation";
 
 const Summary = () => {
   const styles = (colors) => ({
@@ -31,40 +32,42 @@ const Summary = () => {
     else return <MdOutlineRealEstateAgent style={styles(colors)} size={size} />;
   };
   return (
-    <styled.chartRow>
-      {pieChartsData.map((data) => (
-        <styled.container key={data.title}>
-          <styled.IconContainer>
-            {getIcon(data.color, data.title)}
-          </styled.IconContainer>
-          <styled.textContainer borderColor={data.color[0]}>
-            <styled.title>{data.title}</styled.title>
-            <styled.Row>
-              <styled.number>
-                <Counter amount={data.value} speed={1} />
-              </styled.number>
-              <styled.Change>
-                {`${data.change}%`}{" "}
-                {data.change > 0 ? (
-                  <HiOutlineArrowTrendingUp color="green" size={size} />
-                ) : (
-                  <HiOutlineArrowTrendingDown color={redColor} size={size} />
-                )}
-              </styled.Change>
-            </styled.Row>
-          </styled.textContainer>
-          <PieChart
-            width={"120px"}
-            type={"donut"}
-            enableLabels={false}
-            series={data.series}
-            showLegend={false}
-            colors={data.color}
-            labels={[]}
-          />
-        </styled.container>
-      ))}
-    </styled.chartRow>
+    <InViewAnimation styles={commonInViewStyles}>
+      <styled.chartRow>
+        {pieChartsData.map((data) => (
+          <styled.container key={data.title}>
+            <styled.IconContainer>
+              {getIcon(data.color, data.title)}
+            </styled.IconContainer>
+            <styled.textContainer borderColor={data.color[0]}>
+              <styled.title>{data.title}</styled.title>
+              <styled.Row>
+                <styled.number>
+                  <Counter amount={data.value} speed={1} />
+                </styled.number>
+                <styled.Change>
+                  {`${data.change}%`}{" "}
+                  {data.change > 0 ? (
+                    <HiOutlineArrowTrendingUp color="green" size={size} />
+                  ) : (
+                    <HiOutlineArrowTrendingDown color={redColor} size={size} />
+                  )}
+                </styled.Change>
+              </styled.Row>
+            </styled.textContainer>
+            <PieChart
+              width={"120px"}
+              type={"donut"}
+              enableLabels={false}
+              series={data.series}
+              showLegend={false}
+              colors={data.color}
+              labels={[]}
+            />
+          </styled.container>
+        ))}
+      </styled.chartRow>
+    </InViewAnimation>
   );
 };
 

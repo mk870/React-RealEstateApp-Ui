@@ -3,7 +3,16 @@ import {
   secondaryThemeColor,
   whiteColor,
 } from "Css/Variables";
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
+
+const opacityKeyframes = keyframes`
+  0% { opacity:0;}
+  100% { opacity: 1; }
+`;
+
+const opacityAnimation = css`
+  animation: ${opacityKeyframes} 0.5s;
+`;
 
 export const container = styled.div`
   display: flex;
@@ -31,14 +40,13 @@ export const SubContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  ${({ changeTimePeriod }) => changeTimePeriod && opacityAnimation}
 `;
 export const Column = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: start;
   flex-direction: column;
-  //width:100%;
-  //border: 1px solid black;
   gap: 5px;
 `;
 export const TimeWrapper = styled.div`
@@ -62,9 +70,10 @@ export const TimeText = styled.p`
   font-size: 13px;
   color: ${({ isClicked }) => (isClicked ? whiteColor : "black")};
   padding: 5px 7px;
-  background-color: ${({ isClicked }) => (isClicked ? secondaryThemeColor: "none")};
+  background-color: ${({ isClicked }) =>
+    isClicked ? secondaryThemeColor : "none"};
   border-radius: 10px;
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 `;

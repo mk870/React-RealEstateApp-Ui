@@ -1,14 +1,34 @@
 import React from "react";
-import * as styled from "./SalesAnalysisStyles";
+import { useSelector } from "react-redux";
+
 import HeatMap from "./HeatMap/HeatMap";
 import Funnel from "./Funnel/Funnel";
+import InViewAnimation from "HOCs/InViewAnimation";
 
 const SalesAnalysis = () => {
+  const screenSize = useSelector((state) => state.screenSize.value);
+  const styles = () => {
+    if (screenSize >= 1300) {
+      return {
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        width: "100%",
+        gap: "10px",
+      };
+    } else {
+      return {
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        gap: "10px",
+      };
+    }
+  };
   return (
-    <styled.Container>
+    <InViewAnimation styles={styles()}>
       <HeatMap />
       <Funnel />
-    </styled.Container>
+    </InViewAnimation>
   );
 };
 
