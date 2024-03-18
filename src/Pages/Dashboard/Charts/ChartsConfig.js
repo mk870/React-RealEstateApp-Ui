@@ -72,7 +72,7 @@ export const TotalRevenueOptions = {
     width: 4,
   },
   xaxis: {
-    categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+    categories: ["Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb"],
   },
   yaxis: {
     title: {
@@ -155,18 +155,18 @@ export const customersOptions = {
   },
   xaxis: {
     categories: [
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-      "Jan",
-      "Feb",
       "Mar",
       "Apr",
       "May",
       "Jun",
       "Jul",
+      "Aug",
+      "Sept",
+      "Oct",
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb",
     ],
   },
 };
