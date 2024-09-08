@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import * as styled from "./LayoutStyles.js";
@@ -16,13 +16,13 @@ const Layout = ({ children }) => {
   const { error } = useQueryUserProfile();
   const dispatch = useDispatch();
   const screenSize = useSelector((state) => state.screenSize.value);
-  useEffect(() => {
+  useLayoutEffect(() => {
     const handleResize = () => dispatch(setScreenSize(window.innerWidth));
     window.addEventListener("resize", handleResize);
     handleResize();
     return () => window.removeEventListener("resize", handleResize);
   }, [dispatch]);
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (screenSize) {
       if (screenSize <= 920) {
         setMobileMenu(true);
